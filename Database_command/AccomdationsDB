@@ -1,0 +1,246 @@
+{
+   validator: {
+      $jsonSchema: {
+        bsonType: 'object',
+        required: [
+          'name',
+          'description',
+          'address',
+          'rating',
+          'category',
+          'rooms'
+        ],
+        properties: {
+          name: {
+            bsonType: 'string',
+            description: 'Name of the hotel'
+          },
+          description: {
+            bsonType: 'string',
+            description: 'Description of the hotel'
+          },
+          address: {
+            bsonType: 'object',
+            required: [
+              'number',
+              'street',
+              'city',
+              'country'
+            ],
+            properties: {
+              number: {
+                bsonType: 'number',
+                minimum: 0,
+                description: 'Hotel number'
+              },
+              street: {
+                bsonType: 'string',
+                description: 'Hotel street'
+              },
+              city: {
+                bsonType: 'string',
+                description: 'Hotel city'
+              },
+              country: {
+                bsonType: 'string',
+                description: 'Hotel country'
+              }
+            }
+          },
+          rating: {
+            bsonType: 'array',
+            items: {
+              bsonType: 'object',
+              required: [
+                'rating',
+                'comment',
+                'author'
+              ],
+              properties: {
+                rating: {
+                  bsonType: 'number',
+                  minimum: 0,
+                  maximum: 5,
+                  description: 'Hotel rating on a scale of 0 to 5'
+                },
+                comment: {
+                  bsonType: 'string',
+                  description: 'User\'s notice'
+                },
+                author: {
+                    bsonType: 'string',
+                    description: 'author'
+                }
+              }
+            }
+          },
+          category: {
+            bsonType: 'string',
+            description: 'Hotel category'
+          },
+          amenities: {
+            bsonType: 'array',
+            items: {
+              bsonType: 'string',
+              description: 'Amenities offered by the hotel'
+            }
+          },
+          activities: {
+            bsonType: 'array',
+            items: {
+              bsonType: 'string',
+              description: 'Activities near the accomodation'
+            }
+          },
+          rooms: {
+            bsonType: 'array',
+            items: {
+              bsonType: 'object',
+              required: [
+                'type',
+                'price',
+                'dates',
+                'numberOfPax'
+              ],
+              properties: {
+                type: {
+                  bsonType: 'string',
+                  description: 'Hotel room type'
+                },
+                price: {
+                  bsonType: 'number',
+                  description: 'Room price'
+                },
+                dates: {
+                  bsonType: 'array',
+                  items: {
+                    bsonType: 'date',
+                    description: 'Dates when the room is available'
+                  }
+                },
+                numberOfPax: {
+                    bsonType: 'number',
+                    description: 'Number of pax'
+                }
+              }
+            }
+          },
+          contact: {
+            bsonType: 'object',
+            required: [
+                'phone',
+                'email',
+                'website'
+            ],
+            properties: {
+                phone: {
+                    bsonType: 'string',
+                    description: 'Accomodation phone number'
+                },
+                email: {
+                    bsonType: 'string',
+                    description: 'Accomodation email'
+                },
+                website: {
+                    bsonType: 'string',
+                    description: 'Accomodation website'
+                }
+             }
+          }
+        }
+      }
+   }
+}
+
+
+
+{
+    "name": "Komune Living",
+    "description": "A new way to live, work and play",
+    "address": {
+        "number": 20,
+        "street": "Jalan Kerinchi Kiri 3",
+        "city": "Kuala Lumpur",
+        "country": "Malaysia"
+    },
+    "rating": [
+        {
+            "rating": 5,
+            "comment": "I really enjoy Malaysia, and espcially Nasi Kandar Rasmeena where we Bakan Bakan every evening",
+            "author": "Rayane Bouatta"
+        },
+        {
+            "rating": 4.5,
+            "comment": "Nice room and accomodation, disturbed a bit by the room cleaner every morning",
+            "author": "Maxime Heurtevent"
+        },
+        {
+            "rating": 4.5,
+            "comment": "Kami enjoy hotel tu, nak balik if in KL lagi",
+            "author": "Sufyan Afidulah"
+        },
+        {
+            "rating": 4,
+            "comment": "good value for money",
+            "author": "Mael Loret"
+        }
+    ],
+    "category": "Hotel",
+    "amenities": [
+        "Swimming pool",
+        "Gaming Room",
+        "Fitness center",
+        "Restaurant",
+        "Free Wi-Fi",
+        "Prayer room",
+        "Open space"
+    ],
+    "activities": [
+        "KLGateway mall",
+        "KJL line",
+        "Petronas Towers",
+        "Little india",
+        "Chinatown",
+        "University Malaya"
+    ],
+    "rooms": [
+        {
+            "type": "Thinker Studio",
+            "price": 23,
+            "dates": [
+                ISODate("2023-04-01"),
+                ISODate("2023-04-02"),
+                ISODate("2023-04-05")
+            ],
+            "numberOfPax": 2
+        },
+        {
+            "type": "Thinker Two Type 1",
+            "price": 31,
+            "dates": [
+                ISODate("2023-04-03"),
+                ISODate("2023-04-04"),
+                ISODate("2023-04-05"),
+                ISODate("2023-04-06")
+            ],
+            "numberOfPax": 3
+        },
+        {
+            "type": "Artist Studio Loft",
+            "price": 31,
+            "dates": [
+                ISODate("2023-04-05"),
+                ISODate("2023-04-06"),
+                ISODate("2023-04-07")
+            ],
+            "numberOfPax": 2
+        }
+    ],
+    "contact": {
+        "phone": "+60327425788",
+        "email": "hello@komuneliving.com",
+        "website": "http://komuneliving.com/"
+    }
+}
+
+

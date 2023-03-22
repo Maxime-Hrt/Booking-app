@@ -1,0 +1,89 @@
+{
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            required: [
+                'username',
+                'password',
+                'email'
+            ],
+            properties: {
+                username: {
+                    bsonType: 'string',
+                    uniqueItems: true,
+                    description: 'An user id'
+                },
+                password: {
+                    bsonType: 'string',
+                    description: 'Need to access to your account'
+                },
+                email: {
+                    bsonType: 'string',
+                    uniqueItems: true,
+                    description: '123@yourmailadress.com'
+                },
+                created_at: {
+                    bsonType: 'date',
+                },
+                updated_at: {
+                    bsonType: 'date',
+                },
+                search_history: {
+                    bsonType: 'array',
+                    items: {
+                        bsonType: 'string',
+                    }
+                },
+                order_history: {
+                    bsonType: 'array',
+                    items: {
+                        bsonType: 'object',
+                        required: [
+                            'destination',
+                            'date_of_arrival',
+                            'date_of_departure'
+                        ],
+                        properties: {
+                            destination: {
+                                bsonType: 'string'
+                            },
+                            date_of_arrival: {
+                                bsonType: 'date'
+                            },
+                            date_of_departure: {
+                                bsonType: 'date'
+                            }
+                        }
+                    }
+                },
+                gender: {
+                    bsonType: 'string',
+                    enum: ['Male', 'Female', 'Other'],
+                    description: 'Gender of the user'
+                },
+                admin: {
+                    bsonType: 'bool',
+                },
+                reduction: {
+                    bsonType: 'number'
+                },
+                country: {
+                    bsonType: 'string',
+                    description: 'Country of residence'
+                },
+                phone_number: {
+                    bsonType: 'string',
+                    description: 'Phone number of the user'
+                },
+                bucket_list: {
+                    bsonType: 'array',
+                    items: {
+                        bsonType: 'string',
+                        description: 'Destination in user bucket list'
+                    }
+                }
+            }
+        }
+    }
+})
+
