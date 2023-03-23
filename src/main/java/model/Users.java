@@ -8,6 +8,14 @@ public class Users {
     protected Stack<String> searchHistory;
     protected ArrayList<PaymentMethod> paymentMethods;
 
+    public Users(String email, Stack<String> searchHistory, ArrayList<PaymentMethod> paymentMethods) {
+        this.email = email;
+        this.searchHistory = searchHistory;
+        this.paymentMethods = paymentMethods;
+    }
+    public Users() {
+
+    }
     public String getEmail() {
         return email;
     }
