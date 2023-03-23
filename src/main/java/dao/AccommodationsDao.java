@@ -37,12 +37,12 @@ public class AccommodationsDao implements IAccommodationsDao {
     }
 
     @Override
-    public void updateAccommodation(String id, Document accommodation) {
+    public void updateAccommodation(Object id, Document accommodation) {
         this.accommodationsCollection.replaceOne(new Document("_id", id), accommodation);
     }
 
     @Override
-    public void deleteAccommodation(String id) {
+    public void deleteAccommodation(Object id) {
         this.accommodationsCollection.deleteOne(new Document("_id", id));
     }
 }
