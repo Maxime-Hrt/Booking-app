@@ -25,8 +25,8 @@ public class Members extends Users {
 
     }
 
-    public Members(String email, Stack<String> searchHistory, ArrayList<PaymentMethod> paymentMethods, String id, String username, String password, boolean isAdmin, String country, String gender, String description, String profilePicture, ArrayList<PastOrder> pastOrders, int discount, Date dateOfCreation, Date dateOfUpdate, ArrayList<Review> reviews, ArrayList<String> friends, ArrayList<String> bucketList, String phoneNumber) {
-        super(email, searchHistory, paymentMethods);
+    public Members(String email, Recherche search, Stack<Recherche> searchHistory, ArrayList<PaymentMethod> paymentMethods, String id, String username, String password, boolean isAdmin, String country, String gender, String description, String profilePicture, ArrayList<PastOrder> pastOrders, int discount, Date dateOfCreation, Date dateOfUpdate, ArrayList<Review> reviews, ArrayList<String> friends, ArrayList<String> bucketList, String phoneNumber) {
+        super(email, search, searchHistory, paymentMethods);
         this.id = id;
         this.username = username;
         this.password = password;

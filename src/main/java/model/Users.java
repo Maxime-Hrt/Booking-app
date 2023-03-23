@@ -1,46 +1,33 @@
 package model;
 
+import com.mongodb.client.MongoClients;
+import dao.UsersDao;
+import org.bson.Document;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class Users {
     protected String email;
-    protected Stack<String> searchHistory;
+    protected Recherche search;
+    protected Stack<Recherche> searchHistory;
     protected ArrayList<PaymentMethod> paymentMethods;
 
-    public Users(String email, Stack<String> searchHistory, ArrayList<PaymentMethod> paymentMethods) {
-        this.email = email;
-        this.searchHistory = searchHistory;
-        this.paymentMethods = paymentMethods;
-    }
+
     public Users() {
-
+        this.email = null;
+        this.search = null;
+        this.paymentMethods = null;
+        this.searchHistory = new Stack<Recherche>();
     }
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+    public Users(String email, Recherche search, Stack<Recherche> searchHistory, ArrayList<PaymentMethod> paymentMethods){
         this.email = email;
-    }
-
-    public Stack<String> getSearchHistory() {
-        return searchHistory;
-    }
-
-    public void setSearchHistory(Stack<String> searchHistory) {
+        this.search = search;
+        this.paymentMethods = paymentMethods;
         this.searchHistory = searchHistory;
     }
 
-    public void addSearchHistory(String search) {
-        searchHistory.push(search);
-    }
-
-    public ArrayList<PaymentMethod> getPaymentMethods() {
-        return paymentMethods;
-    }
-
-    public void setPaymentMethods(ArrayList<PaymentMethod> paymentMethods) {
-        this.paymentMethods = paymentMethods;
+    public void addHistory(Recherche search){
+        this.searchHistory.push(search);
     }
 }
