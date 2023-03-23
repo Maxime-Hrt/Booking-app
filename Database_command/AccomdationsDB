@@ -8,7 +8,8 @@
           'address',
           'rating',
           'category',
-          'rooms'
+          'rooms',
+          'add_by_an_user'
         ],
         properties: {
           name: {
@@ -89,7 +90,7 @@
             bsonType: 'array',
             items: {
               bsonType: 'string',
-              description: 'Activities near the accomodation'
+              description: 'Activities near the accommodation'
             }
           },
           rooms: {
@@ -121,31 +122,44 @@
                 numberOfPax: {
                     bsonType: 'number',
                     description: 'Number of pax'
+                },
+                photos: {
+                    bsonType: 'array',
+                    items: {
+                        bsonType: 'string',
+                        description: 'Room photos'
+                    }
                 }
               }
             }
           },
           contact: {
             bsonType: 'object',
-            required: [
-                'phone',
-                'email',
-                'website'
-            ],
             properties: {
                 phone: {
                     bsonType: 'string',
-                    description: 'Accomodation phone number'
+                    description: 'Accommodation phone number'
                 },
                 email: {
                     bsonType: 'string',
-                    description: 'Accomodation email'
+                    description: 'Accommodation email'
                 },
                 website: {
                     bsonType: 'string',
-                    description: 'Accomodation website'
+                    description: 'Accommodation website'
                 }
-             }
+            }
+          },
+          add_by_an_user: {
+              bsonType: 'bool',
+              description: 'Accommodation added by an user'
+          },
+          photos: {
+              bsonType: 'array',
+              items: {
+                  bsonType: 'string',
+                  description: 'Accommodation photos'
+              }
           }
         }
       }
@@ -167,7 +181,7 @@
         {
             "rating": 5,
             "comment": "I really enjoy Malaysia, and espcially Nasi Kandar Rasmeena where we Bakan Bakan every evening",
-            "author": "Rayane Bouatta"
+            "author": "Rayane Bouaitta"
         },
         {
             "rating": 4.5,
@@ -212,7 +226,10 @@
                 ISODate("2023-04-02"),
                 ISODate("2023-04-05")
             ],
-            "numberOfPax": 2
+            "numberOfPax": 2,
+            "photos": [
+                "https://bangsarsouth.komuneliving.com/img/asset/bWFpbi9pbWFnZXMvdGhpbmtlci1zdHVkaW8tdHdvLmpwZw==?w=1600&h=900&fit=crop&s=511940b2717b498914f1eee239a137a1"
+            ]
         },
         {
             "type": "Thinker Two Type 1",
@@ -223,7 +240,10 @@
                 ISODate("2023-04-05"),
                 ISODate("2023-04-06")
             ],
-            "numberOfPax": 3
+            "numberOfPax": 3,
+            "photos": [
+                "https://bangsarsouth.komuneliving.com/img/asset/bWFpbi9pbWFnZXMvdGhpbmtlci10d28uanBn?w=1600&h=900&fit=crop&s=f36e0b64e0aa91b6d8f93f56bd50b372"
+            ]
         },
         {
             "type": "Artist Studio Loft",
@@ -233,14 +253,128 @@
                 ISODate("2023-04-06"),
                 ISODate("2023-04-07")
             ],
-            "numberOfPax": 2
+            "numberOfPax": 2,
+            "photos": [
+                "https://bangsarsouth.komuneliving.com/img/asset/bWFpbi9pbWFnZXMvcmVzaXplX2tvbXVuZWxpdmluZ19mZWIyMDIwX2ludGVyaW9yXzAzLmpwZw==?w=1600&h=900&fit=crop&s=ea7fbda2b93ccdff10df5a7e212c546d"
+            ]
         }
     ],
     "contact": {
         "phone": "+60327425788",
         "email": "hello@komuneliving.com",
         "website": "http://komuneliving.com/"
-    }
+    },
+    "add_by_an_user": false,
+    "photos": [
+        "https://bangsarsouth.komuneliving.com/img/asset/bWFpbi9pbWFnZXMva29tdW5lX2xpdmluZ19yb29mdG9wX2ZhY2FkZS5qcGc=?w=1600&h=900&fit=crop-22-39&s=8200d3b24f66ac71d97b7201f3218af7",
+        "https://bangsarsouth.komuneliving.com/img/asset/bWFpbi9pbWFnZXMva29tdW5lLWZvdW50YWluLTE1Nzc3MDE5NDkuanBn?w=1600&h=900&fit=crop&s=064d32a4076669dd390e10dd627b7f77",
+        "https://bangsarsouth.komuneliving.com/img/asset/bWFpbi9pbWFnZXMva29tdW5lLWxpdmluZy1kcml2ZXdheS5qcGc=?w=1600&h=900&fit=crop&s=a6dad0d22e8c0e3f69f14632a5c4da42"
+    ]
+}
+
+
+
+{
+    "name": "Piroozy",
+    "description": "A hotel in the heart of Iran like a beautiful jewel in a city full of mystery with hospitable people, has the honor of being in the field of hospitality for four decades. The former Dariush Hotel has opened at the crossroads of Safavid and Qajar, and with a road full of victories, it is eager to meet all the guests from all over the world. For years we have been on the road to the ultimate in hospitality stars, but without your support and advice we will never succeed. We hope to create memories for you and cherish memories with you in all the websites of the world in the field of tourism. Be our guest to think more about development, progress, self-improvement and hospitality with your presence. We want to be the proud owner of being your host.",
+    "address": {
+        "number": 20,
+        "street": "Chahar Bagh Paeen St",
+        "city": "Isfahan",
+        "country": "Iran"
+    },
+    "rating": [
+        {
+            "rating": 3,
+            "comment": "I stayed in this hotel for 3 days and I really enjoyed it. The staff was very friendly and helpful.",
+            "author": "Saeid Bahmani"
+        },
+        {
+            "rating": 5,
+            "comment": "Comfortable hotel, 15 minutes walk from main sights",
+            "author": "Carla Alicata"
+        }
+    ],
+    "category": "Hotel",
+    "amenities": [
+        "Hairdresser",
+        "Cafe",
+        "Restaurant",
+        "Free Wi-Fi",
+        "Tourist tours",
+        "Conference room",
+        "Imam Hussein metro station"
+    ],
+    "activities": [
+        "Naqsh-e Jahan Square",
+        "Ali Qapu Palace",
+        "Chehel Sotoun Palace",
+        "Hasht Behesht Palace",
+        "Imam Mosque",
+        "Jahan Nama Shopping Center",
+        "Vank Cathedral",
+        "Sio Se Pol Bridge"
+    ],
+    "rooms": [
+        {
+            "type": "Single Room",
+            "price": 44,
+            "dates": [
+                ISODate("2023-06-07"),
+                ISODate("2023-06-08"),
+                ISODate("2023-06-09"),
+                ISODate("2023-06-10"),
+                ISODate("2023-06-11"),
+                ISODate("2023-06-12"),
+                ISODate("2023-06-13"),
+                ISODate("2023-06-14"),
+                ISODate("2023-06-15"),
+                ISODate("2023-06-16")
+            ],
+            "numberOfPax": 1,
+            "photos": [
+                "https://piroozyhotel.com/wp-content/uploads/2022/01/Dbl-2.jpg"
+            ]
+        },
+        {
+            "type": "Double Room",
+            "price": 67,
+            "dates": [
+                ISODate("2023-06-11"),
+                ISODate("2023-06-12"),
+                ISODate("2023-06-13"),
+                ISODate("2023-06-14")
+            ],
+            "numberOfPax": 2,
+            "photos": [
+                "https://piroozyhotel.com/wp-content/uploads/2022/01/Dbl-2.jpg"
+            ]
+        },
+        {
+            "type": "Triple Room",
+            "price": 90,
+            "dates": [
+                ISODate("2023-04-05"),
+                ISODate("2023-04-06"),
+                ISODate("2023-04-07")
+            ],
+            "numberOfPax": 3,
+            "photos": [
+                "https://piroozyhotel.com/wp-content/uploads/2022/01/Trb-5.jpg"
+            ]
+        }
+    ],
+    "contact": {
+        "phone": "+983132214354",
+        "website": "http://piroozyhotel.com/"
+    },
+    "add_by_an_user": false,
+    "photos": [
+        "https://ak-d.tripcdn.com/images/ww041e000001f5jmy5D36_R_960_660_R5_D.jpg",
+        "https://www.alaedin.travel/Files/Hotels/isfahan/piroozy/Alaedin-Travel-Agency-Isfahan-Piroozy-Hotel-1.jpg",
+        "https://www.irantravelingcenter.com/wp-content/uploads/2014/09/isfahan.iran-traveling-center.Imam-square.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/%C4%80l%C4%AB_Q%C4%81p%C5%AB_in_golden_time.jpg/1200px-%C4%80l%C4%AB_Q%C4%81p%C5%AB_in_golden_time.jpg"
+    ]
 }
 
 
