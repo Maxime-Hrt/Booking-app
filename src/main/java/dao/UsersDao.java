@@ -35,12 +35,12 @@ public class UsersDao implements IUsersDao{
     }
 
     @Override
-    public void updateUser(String id, Document user) {
+    public void updateUser(Object id, Document user) {
         this.usersCollection.replaceOne(new Document("_id", id), user);
     }
 
     @Override
-    public void deleteUser(String id) {
+    public void deleteUser(Object id) {
         this.usersCollection.deleteOne(new Document("_id", id));
     }
 }
