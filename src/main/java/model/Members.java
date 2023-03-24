@@ -1,5 +1,7 @@
 package model;
 
+import org.bson.Document;
+
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -43,5 +45,18 @@ public class Members extends Users {
         this.friends = friends;
         this.bucketList = bucketList;
         this.phoneNumber = phoneNumber;
+    }
+
+    public void verifyUser(String email, String password){
+        Data data = new Data();
+        ArrayList<Document> datas = data.getAllUsers();
+        for (Document doc : datas) {
+            if (doc.getString("email").equals(email) && doc.getString("password").equals(password) ||
+                    doc.getString("username").equals(email) && doc.getString("password").equals(password)) {
+                System.out.println("User found");
+                //return true;
+            }
+        }
+        //return false;
     }
 }
