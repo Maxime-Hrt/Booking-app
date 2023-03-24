@@ -9,7 +9,7 @@ public class Recherche {
     public Recherche() {
 
     }
-    public Recherche(String Destination, Date dateOfDeparture, Date dateOfArrival, int nbOfPax) {
+    public Recherche(String Destination, Date dateOfArrival, Date dateOfDeparture, int nbOfPax) {
         this.Destination = Destination;
         this.dateOfDeparture = dateOfDeparture;
         this.dateOfArrival = dateOfArrival;
@@ -26,8 +26,8 @@ public class Recherche {
     }
     public void printSearch(){
         System.out.println("Destination: " + this.Destination);
-        System.out.println("Date of departure: " + this.dateOfDeparture);
         System.out.println("Date of arrival: " + this.dateOfArrival);
+        System.out.println("Date of departure: " + this.dateOfDeparture);
         System.out.println("Number of pax: " + this.nbOfPax);
     }
 }

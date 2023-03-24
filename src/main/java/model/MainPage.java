@@ -43,6 +43,46 @@ public class MainPage {
                 setSearchDone(true);
             }
         }
-        return new Recherche(destination, Date.stringToDate(dateOfDeparture), Date.stringToDate(dateOfArrival), nbOfPax);
+        return new Recherche(destination, Date.stringToDate(dateOfArrival), Date.stringToDate(dateOfDeparture), nbOfPax);
+    }
+
+    public void login(){
+        Scanner sc = new Scanner(System.in);
+        String str_tempo = null, password = null, email = null, username = null, name = null;
+        Members member = new Members();
+        boolean registered = false;
+
+        while (!registered){
+            System.out.println("Enter your username/email: ");
+            name = sc.nextLine();
+            /*
+            if (str_tempo.contains("@")) {
+                email = str_tempo;
+            } else {
+                username = str_tempo;
+            }*/
+            System.out.println("Enter your password: ");
+            password = sc.nextLine();
+            System.out.println("Log In? (y/n)");
+            str_tempo = sc.nextLine();
+            if (str_tempo.equals("y")) {
+                registered = true;
+            }
+        }
+        member.verifyUser(name, password);
+    }
+
+    public void create_account(){
+
+    }
+
+    public int menu(){
+        Scanner sc = new Scanner(System.in);
+        int choix = 0;
+        System.out.println("1. Login");
+        System.out.println("2. Make a research");
+        System.out.println("3. Quit");
+        choix = Integer.parseInt(sc.nextLine());
+        return choix;
     }
 }
