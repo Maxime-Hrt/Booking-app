@@ -14,16 +14,17 @@ public class Main {
         Users user = new Users();
         int choix = 0;
 
-        while (choix != 3) {
+        while (choix != 4) {
             choix = mainPage.menu();
             switch (choix) {
                 case 1 -> mainPage.login();
-                case 2 -> {
+                case 2 -> mainPage.create_account();
+                case 3 -> {
                     search = mainPage.makeAResearch();
                     user.addHistory(search);
                     search.printSearch();
                 }
-                case 3 -> System.out.println("Bye!");
+                case 4 -> System.out.println("Bye!");
                 default -> System.out.println("Wrong choice!");
             }
         }
