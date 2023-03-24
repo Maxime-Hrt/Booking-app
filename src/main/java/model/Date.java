@@ -40,4 +40,8 @@ public class Date {
         Date date1 = new Date(Integer.parseInt(dateArray[0]), Integer.parseInt(dateArray[1]), Integer.parseInt(timeArray[0]));
         return date1;
     }
+
+    static public String dateToString(Date date) {
+        return date.getDay() + "/" + date.getMonth() + "/" + date.getYear();
+    }
 }
