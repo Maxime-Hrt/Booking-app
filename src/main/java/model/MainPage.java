@@ -77,6 +77,7 @@ public class MainPage {
         member.verifyUser(name, password);
     }
 
+    //Doit vérifier les doublons et obliger les informations obligatoires
     public void create_account(){
         UsersDao usersDao = new UsersDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Users");
         Members member = new Members();
@@ -136,19 +137,15 @@ public class MainPage {
                     toInsert.append("phoneNumber", phoneNumber);
                 }
                 case 8 -> {
-                    System.out.println("Enter the number of cards you want to add: ");
-                    int noOfCards = Integer.parseInt(sc.nextLine());
                     PaymentMethod card = new PaymentMethod();
                     Calendar calendar = Calendar.getInstance();
-                    for (int i = 0 ; i < noOfCards ; i++){
-                        card.fillInformation();
-                        calendar.set(card.getExpirationDate().getYear(), card.getExpirationDate().getMonth(), card.getExpirationDate().getDay());
-                        toInsert.append("PaymentMethod", Collections.singletonList(
-                                new Document("card_number", card.getCardNumber())
-                                        .append("expiration_date", calendar.getTime())
-                                        .append("security_code", card.getCvv())
-                        ));
-                    }
+                    card.fillInformation();
+                    calendar.set(card.getExpirationDate().getYear(), card.getExpirationDate().getMonth(), card.getExpirationDate().getDay());
+                    toInsert.append("PaymentMethod", Collections.singletonList(
+                            new Document("card_number", card.getCardNumber())
+                                    .append("expiration_date", calendar.getTime())
+                                    .append("security_code", card.getCvv())
+                    ));
                 }
                 case 9 -> {
                     System.out.println("Do you want to register? (y/n)");
