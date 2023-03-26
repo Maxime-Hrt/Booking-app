@@ -4,7 +4,6 @@ import model.Date;
 import model.MainPage;
 import model.Recherche;
 import model.Users;
-
 import java.util.Scanner;
 
 public class Main {
