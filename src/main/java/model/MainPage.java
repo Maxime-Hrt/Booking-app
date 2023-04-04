@@ -81,7 +81,6 @@ public class MainPage {
     //Doit obliger les informations obligatoires
     public void create_account(){
         UsersDao usersDao = new UsersDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Users");
-        Members member = new Members();
         ArrayList<Document> allUsers = (ArrayList<Document>) usersDao.getAllUsers();
         String place = null;
         boolean isRegistered = false, emailTaken = false, usernameTaken = false, passwordTaken = false;
@@ -137,11 +136,11 @@ public class MainPage {
                                 bucketList.add(place);
                             }
                         }
-                        toInsert.append("bucketList", bucketList);
+                        toInsert.append("bucket_list", bucketList);
                     }
                     case 5 -> {
                         place = sc.nextLine();
-                        toInsert.append("countryOfResidence", place);
+                        toInsert.append("country", place);
                     }
                     case 6 -> {
                         while (genderChoice != 1 && genderChoice != 2 && genderChoice != 3) {
@@ -158,14 +157,14 @@ public class MainPage {
                     }
                     case 7 -> {
                         String phoneNumber = sc.nextLine();
-                        toInsert.append("phoneNumber", phoneNumber);
+                        toInsert.append("phone_number", phoneNumber);
                     }
                     case 8 -> {
                         PaymentMethod card = new PaymentMethod();
                         Calendar calendar = Calendar.getInstance();
                         card.fillInformation();
                         calendar.set(card.getExpirationDate().getYear(), card.getExpirationDate().getMonth(), card.getExpirationDate().getDay());
-                        toInsert.append("PaymentMethod", Collections.singletonList(
+                        toInsert.append("payment-method", Collections.singletonList(
                                 new Document("card_number", card.getCardNumber())
                                         .append("expiration_date", calendar.getTime())
                                         .append("security_code", card.getCvv())
@@ -188,6 +187,7 @@ public class MainPage {
                 System.out.println("You have to fill all the mandatory fields");
             }
         }
+        toInsert.append("created_at", DateTime.date_actual());
         usersDao.insertUser(toInsert);
     }
 

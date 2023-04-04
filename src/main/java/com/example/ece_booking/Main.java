@@ -1,9 +1,7 @@
 package com.example.ece_booking;
 
-import model.Date;
-import model.MainPage;
-import model.Recherche;
-import model.Users;
+import model.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,6 +10,8 @@ public class Main {
         Recherche search;
         Users user = new Users();
         int choix = 0;
+
+        //System.out.println(DateTime.date_actual());
 
         while (choix != 4) {
             choix = mainPage.menu();
