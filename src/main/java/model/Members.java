@@ -1,5 +1,7 @@
 package model;
 
+import com.mongodb.client.MongoClients;
+import dao.UsersDao;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -47,16 +49,45 @@ public class Members extends Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public void verifyUser(String email, String password){
+    public Members(String email, String password){ // Constructor for login
+        try {
+            if (!verifyUser(email, password)){
+                throw new Exception(email + " or " + password + " not found");
+            }
+            Document user = findUser(email, password);
+            this.id = user.getString("id");
+            this.username = user.getString("username");
+            this.password = user.getString("password");
+            this.isAdmin = user.getBoolean("isAdmin");
+            System.out.println("Successfully login");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean verifyUser(String email, String password){
         Data data = new Data();
         ArrayList<Document> datas = data.getAllUsers();
         for (Document doc : datas) {
             if (doc.getString("email").equals(email) && doc.getString("password").equals(password) ||
                     doc.getString("username").equals(email) && doc.getString("password").equals(password)) {
                 System.out.println("User found");
-                //return true;
+                return true;
             }
         }
-        //return false;
+        return false;
+    }
+
+    public Document findUser(String email, String password){
+        Data data = new Data();
+        ArrayList<Document> datas = data.getAllUsers();
+        for (Document doc : datas) {
+            if (doc.getString("email").equals(email) && doc.getString("password").equals(password) ||
+                    doc.getString("username").equals(email) && doc.getString("password").equals(password)) {
+                System.out.println("User found");
+                return doc;
+            }
+        }
+        return null;
     }
 }

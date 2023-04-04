@@ -1,4 +1,5 @@
 package model;
+import java.util.Date;
 
 public class DateTime extends Date{
     private int hour;
@@ -42,5 +43,9 @@ public class DateTime extends Date{
         String[] hourArray = timeArray[1].split(":");
         DateTime date1 = new DateTime(Integer.parseInt(dateArray[0]), Integer.parseInt(dateArray[1]), Integer.parseInt(timeArray[0]), Integer.parseInt(hourArray[0]), Integer.parseInt(hourArray[1]), Integer.parseInt(hourArray[2]));
         return date1;
+    }
+
+    static public Date date_actual(){
+        return new Date();
     }
 }

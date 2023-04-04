@@ -21,18 +21,10 @@ public class Date {
     public int getYear() {
         return year;
     }
-    public void setDay(int day) {
-        this.day = day;
-    }
-    public void setMonth(int month) {
-        this.month = month;
-    }
-    public void setYear(int year) {
-        this.year = year;
-    }
     public String toString() {
         return day + "/" + month + "/" + year;
     }
+
     //Date format: dd/mm/yyyy hh:mm:ss
     static public Date stringToDate(String date) {
         String[] dateArray = date.split("/");
