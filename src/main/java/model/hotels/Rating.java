@@ -1,16 +1,20 @@
 package model.hotels;
 
 import model.Members;
+import org.bson.Document;
+
+import java.util.ArrayList;
 
 public class Rating {
     private int rating;
     private String comment;
-    private Members member;
+    private String author;
+    //private Members member;
 
     public Rating() {
     }
 
-    public Rating(int rating, String comment, Members member) {
+    public Rating(int rating, String comment, String author){ //Members member) {
         try{
             if (rating < 0 || rating > 5) {
                 throw new Exception("Rating must be between 0 and 5");
@@ -21,8 +25,26 @@ public class Rating {
             this.rating = 0;
         }
         this.comment = comment;
-        this.member = member;
+        //this.member = member;
+        this.author = author;
     }
+
+    public Rating(Document rating){
+        try {
+            int ratingValue = rating.getInteger("rating");
+            if (ratingValue < 0 || ratingValue > 5) {
+                throw new Exception("Rating must be between 0 and 5");
+            }
+            this.rating = ratingValue;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            this.rating = 0;
+        }
+        this.comment = rating.getString("comment");
+        this.author = rating.getString("author");
+    }
+
+
 
     public int getRating() {
         return rating;
@@ -40,17 +62,17 @@ public class Rating {
         this.comment = comment;
     }
 
-    public Members getMember() {
-        return member;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setMember(Members member) {
-        this.member = member;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void printRating() {
-        System.out.println("Rating: " + this.rating);
-        System.out.println("Comment: " + this.comment);
-        System.out.println("Member: " + this.member);
+        System.out.println("\tRating: " + this.rating);
+        System.out.println("\tComment: " + this.comment);
+        System.out.println("\tAuthor: " + this.author + "\n");
     }
 }
