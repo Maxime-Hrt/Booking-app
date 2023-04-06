@@ -3,6 +3,7 @@ package model;
 import com.mongodb.client.MongoClients;
 import dao.AccommodationsDao;
 import dao.UsersDao;
+import model.hotels.Hotels;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -20,5 +21,24 @@ public class Data {
     }
     public ArrayList<Document> getAllAccommodations(){
         return new ArrayList<>(tabOfAccommodations.getAllAccommodations());
+    }
+    public ArrayList<Hotels> getAllHotels(){
+        Data data = new Data();
+        ArrayList<Document> hotels = data.getAllAccommodations();
+        ArrayList<Hotels> hotelsList = new ArrayList<>();
+        for (Document hotel : hotels) {
+            hotelsList.add(new Hotels(hotel));
+        }
+        return hotelsList;
+    }
+
+    public ArrayList<Members> getAllMembers(){
+        Data data = new Data();
+        ArrayList<Document> members = data.getAllUsers();
+        ArrayList<Members> membersList = new ArrayList<>();
+        for (Document member : members) {
+            membersList.add(new Members(member));
+        }
+        return membersList;
     }
 }

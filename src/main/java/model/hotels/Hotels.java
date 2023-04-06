@@ -2,7 +2,7 @@ package model.hotels;
 
 import com.mongodb.client.MongoClients;
 import dao.AccommodationsDao;
-import dao.UsersDao;
+import model.Data;
 import model.hotels.Adress;
 
 import org.bson.Document;
@@ -150,13 +150,13 @@ public class Hotels {
         System.out.println("Photos : " + this.photos);
     }
 
-    static public void main (String[] arg){
-        AccommodationsDao accommodationsDao = new AccommodationsDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Accomodations");
-        ArrayList<Hotels> hotels = new ArrayList<>();
+    public String getName() {
+        return name;
+    }
 
-        for(Document hotel : accommodationsDao.getAllAccommodations()){
-            hotels.add(new Hotels(hotel));
-        }
+    static public void main (String[] arg){
+        ArrayList<Hotels> hotels = new Data().getAllHotels();
+
 
         for(Hotels hotel : hotels){
             hotel.printHotel();
