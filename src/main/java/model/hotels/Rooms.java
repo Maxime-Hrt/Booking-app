@@ -2,12 +2,12 @@ package model.hotels;
 
 import org.bson.Document;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.*;
 
 public class Rooms {
     private String type;
     private int price, number_of_pax;
-    private ArrayList<Date> unavailableDates;
+    private ArrayList<LocalDate> unavailableDates;
     private ArrayList<String> photos;
 
     public Rooms() {
@@ -18,7 +18,7 @@ public class Rooms {
         this.type = room.getString("type");
         this.price = room.getInteger("price");
         this.number_of_pax = room.getInteger("numberOfPax");
-        this.unavailableDates = (ArrayList<Date>) room.get("dates");
+        this.unavailableDates = (ArrayList<LocalDate>) room.get("dates");
         if (room.containsKey("photos")){
             this.photos = (ArrayList<String>) room.get("photos");
         } else {

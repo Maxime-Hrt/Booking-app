@@ -1,10 +1,21 @@
 package model;
 
-public class PastOrder extends Recherche{ //Rajouter ACCOMODATIONS
+import model.hotels.Hotels;
+import org.bson.Document;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class PastOrder{ //Rajouter ACCOMODATIONS
+    Hotels hotel = new Hotels();
+    LocalDate dateOfArrival, dateOfDeparture;
 
     public PastOrder() {
     }
-    public PastOrder(String destination, Date date_of_arrival, Date date_of_departure, int nbr_pax) {
-        super(destination, date_of_arrival, date_of_departure, nbr_pax);
+
+    public PastOrder(Hotels hotel, LocalDate dateOfArrival, LocalDate dateOfDeparture) {
+        this.hotel = hotel;
+        this.dateOfArrival = dateOfArrival;
+        this.dateOfDeparture = dateOfDeparture;
     }
 }
