@@ -7,12 +7,14 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.ListIterator;
 
 
 public class Users {
     protected ArrayList<String> searchHistory; //destination history
     protected String email, phoneNumber;
-    protected ArrayList<PaymentMethod> paymentMethods;
+    protected PaymentMethod paymentMethod;
     protected int discount;
 
 
@@ -45,19 +47,25 @@ public class Users {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
         try {
-            Object paymentMethodObj = user.get("payment_method");
-            if (paymentMethodObj == null) {
-                throw new Exception("No paymentMethods found");
+            if (!user.containsKey("payment_method")) {
+                throw new Exception("No payment method found");
             }
-            ArrayList<Document> paymentMethods = (ArrayList<Document>) paymentMethodObj;
-            ArrayList<PaymentMethod> paymentMethodsList = new ArrayList<>();
-            for (Document paymentMethod : paymentMethods) {
-                paymentMethodsList.add(new PaymentMethod(paymentMethod));
+            //System.out.println(user.get("payment_method"));
+            List<Document> paymentMethod = new ArrayList<>((List<Document>) user.get("payment_method"));
+            for (Document doc : paymentMethod) {
+                this.paymentMethod = new PaymentMethod(doc);
             }
+
+            this.paymentMethod = new PaymentMethod(user.get("payment_method", Document.class));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+
+
+
         if (user.containsKey("search_history")) {
             this.searchHistory = (ArrayList<String>) user.get("search_history");
         } else {
@@ -93,14 +101,6 @@ public class Users {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public ArrayList<PaymentMethod> getPaymentMethods() {
-        return paymentMethods;
-    }
-
-    public void setPaymentMethods(ArrayList<PaymentMethod> paymentMethods) {
-        this.paymentMethods = paymentMethods;
     }
 
     public int getDiscount() {

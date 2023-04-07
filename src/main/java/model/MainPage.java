@@ -164,7 +164,7 @@ public class MainPage {
                         Calendar calendar = Calendar.getInstance();
                         card.fillInformation();
                         calendar.set(card.getExpirationDate().getYear(), card.getExpirationDate().getMonthValue(), card.getExpirationDate().getDayOfMonth());
-                        toInsert.append("payment-method", Collections.singletonList(
+                        toInsert.append("payment_method", Collections.singletonList(
                                 new Document("card_number", card.getCardNumber())
                                         .append("expiration_date", calendar.getTime())
                                         .append("security_code", card.getCvv())

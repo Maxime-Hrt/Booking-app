@@ -51,7 +51,6 @@ public class Members extends Users {
         }
 
         if (user.containsKey("created_at")) {
-            System.out.println("CACACACACACACACACACACACACACACACCA");
             Object date = user.get("created_at");
             if (date instanceof LocalDate) {
                 this.dateOfCreation = (LocalDate) date;
@@ -193,6 +192,7 @@ public class Members extends Users {
         System.out.println("Email: " + this.email);
         System.out.println("Password: " + this.password);
         System.out.println("Admin: " + this.isAdmin);
+        System.out.println("phone number: " + this.phoneNumber);
         System.out.println("Date of creation: " + this.dateOfCreation);
         System.out.println("Date of update: " + this.dateOfUpdate);
         System.out.println("Order history: " + this.order_history);
@@ -200,10 +200,14 @@ public class Members extends Users {
         System.out.println("Country: " + this.country);
         System.out.println("Description: " + this.description);
         System.out.println("Profile picture: " + this.profilePicture);
-        System.out.println("Reviews: " + this.reviews);
+        for (Review review : this.reviews) {
+            System.out.println("\tReview: " + review);
+        }
         System.out.println("Bucket list: " + this.bucketList);
         System.out.println("Friends: " + this.friends);
         System.out.println("Search history: " + this.searchHistory);
+        System.out.println("Payment method: \n" + this.paymentMethod);
+
         System.out.println("\n\n");
     }
 
