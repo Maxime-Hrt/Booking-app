@@ -1,16 +1,15 @@
 package model;
 
+import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.bson.codecs.jsr310.LocalDateCodec;
 
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.Date;
+import java.util.*;
 import java.time.*;
+import java.util.Date;
 
 public class PaymentMethod {
     private String cardNumber;
-    private String cardHolderName;
     private LocalDate expirationDate;
     private String cvv;
 
@@ -19,31 +18,29 @@ public class PaymentMethod {
     public PaymentMethod() {
     }
 
-    public PaymentMethod(String cardNumber, String cardHolderName, LocalDate expirationDate, String cvv) {
+    public PaymentMethod(String cardNumber, LocalDate expirationDate, String cvv) {
         this.cardNumber = cardNumber;
-        this.cardHolderName = cardHolderName;
         this.expirationDate = expirationDate;
         this.cvv = cvv;
     }
 
+
     public PaymentMethod(Document paymentMethod) {
-        Object date = paymentMethod.get("expiration_date");
-        if (date instanceof LocalDate){
-            this.expirationDate = (LocalDate) date;
-        } else {
-            this.expirationDate = LocalDate.parse((String) date);
-        }
         this.cardNumber = paymentMethod.getString("card_number");
+        this.expirationDate = paymentMethod.getDate("expiration_date").toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         this.cvv = paymentMethod.getString("security_code");
+    }
+
+
+
+    public String toString(){
+        return "Card number: " + cardNumber + "\nExpiration date: " + expirationDate + "\nSecurity code: " + cvv;
     }
 
     public String getCardNumber() {
         return cardNumber;
     }
 
-    public String getCardHolderName() {
-        return cardHolderName;
-    }
 
     public LocalDate getExpirationDate() {
         return expirationDate;
@@ -57,9 +54,6 @@ public class PaymentMethod {
         this.cardNumber = cardNumber;
     }
 
-    public void setCardHolderName(String cardHolderName) {
-        this.cardHolderName = cardHolderName;
-    }
 
     public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
@@ -81,8 +75,30 @@ public class PaymentMethod {
         this.cvv = sc.nextLine();
     }
 
+
+    public List<Document> getPaymentMethods() {
+        List<Document> paymentMethods = new ArrayList<>();
+        Data data = new Data();
+        List<Document> users = data.getAllUsers();
+        for (Document user : users) {
+            if (user.containsKey("payment_method")) {
+                //System.out.println(user.get("payment_method"));
+                List<Document> paymentMethodList = (List<Document>) user.get("payment_method");
+                paymentMethods.addAll(paymentMethodList);
+            }
+        }
+
+        return paymentMethods;
+    }
+
+
     static public void main(String[] args){
-        LocalDate date = LocalDate.of(2023, 4, 6);
-        System.out.println(date);
+        List<Document> paymentMethods = new PaymentMethod().getPaymentMethods();
+        ListIterator<Document> iterator = paymentMethods.listIterator();
+        while (iterator.hasNext()){
+            Document paymentMethod = iterator.next();
+            System.out.println(iterator.nextIndex());
+            System.out.println(new PaymentMethod(paymentMethod));
+        }
     }
 }

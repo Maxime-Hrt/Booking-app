@@ -7,6 +7,7 @@ import model.hotels.Hotels;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Data {
     private UsersDao tabOfUsers;
@@ -33,8 +34,7 @@ public class Data {
     }
 
     public ArrayList<Members> getAllMembers(){
-        Data data = new Data();
-        ArrayList<Document> members = data.getAllUsers();
+        List<Document> members = tabOfUsers.getAllUsers();
         ArrayList<Members> membersList = new ArrayList<>();
         for (Document member : members) {
             membersList.add(new Members(member));

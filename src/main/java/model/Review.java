@@ -51,4 +51,8 @@ public class Review {
     public int getRating() {
         return rating;
     }
+
+    public String toString() {
+        return this.comment + " " + this.destination + " " + this.rating;
+    }
 }
