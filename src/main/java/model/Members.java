@@ -8,6 +8,7 @@ import org.bson.Document;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Stack;
 
 public class Members extends Users {
@@ -51,44 +52,28 @@ public class Members extends Users {
         }
 
         if (user.containsKey("created_at")) {
-            Object date = user.get("created_at");
-            if (date instanceof LocalDate) {
-                this.dateOfCreation = (LocalDate) date;
-            }
+            this.dateOfCreation = user.getDate("created_at").toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
         } else {
             this.dateOfCreation = LocalDate.now();
         }
 
 
         if (user.containsKey("updated_at")) {
-            Object date = user.get("updated_at");
-            if (date instanceof LocalDate) {
-                this.dateOfUpdate = (LocalDate) date;
-            }
+            this.dateOfUpdate = user.getDate("updated_at").toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
         } else {
             this.dateOfUpdate = LocalDate.now();
         }
         try {
-            Object orderHistoryObj = user.get("order_history");
-            if (orderHistoryObj == null) {
-                throw new Exception("No orderHistory found");
+            Object orderHistObj = user.get("order_history");
+            if (orderHistObj == null) {
+                throw new Exception("No history found");
             }
-            ArrayList<Document> orderHistory = (ArrayList<Document>) orderHistoryObj;
-            ArrayList<PastOrder> orderHistoryList = new ArrayList<>();
-            ArrayList<Hotels> allHotels = new Data().getAllHotels();
-            for (Document order : orderHistory) {
-                for (Hotels hotel : allHotels) {
-                    if (order.getString("destination").equals(hotel.getName())) {
-                        Object dateOfDepartureObj = order.get("date_of_departure");
-                        Object dateOfArrivalObj = order.get("date_of_arrival");
-                        if (dateOfDepartureObj instanceof LocalDate && dateOfArrivalObj instanceof  LocalDate){
-                            orderHistoryList.add(new PastOrder(hotel, (LocalDate) dateOfDepartureObj, (LocalDate) dateOfArrivalObj));
-                        } else {
-                            orderHistoryList.add(new PastOrder(hotel, LocalDate.parse(order.getString("date_of_departure")), LocalDate.parse(order.getString("date_of_arrival"))));
-                        }
-                    }
-                }
+            ArrayList<Document> history = (ArrayList<Document>) orderHistObj;
+            ArrayList<PastOrder> historyList = new ArrayList<>();
+            for (Document hist : history) {
+                historyList.add(new PastOrder(hist));
             }
+            this.order_history = historyList;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             this.order_history = new ArrayList<>();
@@ -146,19 +131,16 @@ public class Members extends Users {
     }
 
 
-    public Members(String email, String password){ // Constructor for login
+    public Members login(String email, String password){ // Constructor for login
         try {
             if (!verifyUser(email, password)){
                 throw new Exception(email + " or " + password + " not found");
             }
-            Document user = findUser(email, password);
-            this.id = user.getString("id");
-            this.username = user.getString("username");
-            this.password = user.getString("password");
-            this.isAdmin = user.getBoolean("isAdmin");
             System.out.println("Successfully login");
+            return new Members(findUser(email, password));
         } catch (Exception e) {
             e.printStackTrace();
+            return new Members();
         }
     }
 
@@ -180,7 +162,7 @@ public class Members extends Users {
         for (Document doc : datas) {
             if (doc.getString("email").equals(email) && doc.getString("password").equals(password) ||
                     doc.getString("username").equals(email) && doc.getString("password").equals(password)) {
-                System.out.println("User found");
+                //System.out.println("User found");
                 return doc;
             }
         }
@@ -195,7 +177,10 @@ public class Members extends Users {
         System.out.println("phone number: " + this.phoneNumber);
         System.out.println("Date of creation: " + this.dateOfCreation);
         System.out.println("Date of update: " + this.dateOfUpdate);
-        System.out.println("Order history: " + this.order_history);
+        System.out.println("Order history: ");
+        for (PastOrder pastorder : this.order_history) {
+            System.out.println("\t" + pastorder);
+        }
         System.out.println("Gender: " + this.gender);
         System.out.println("Country: " + this.country);
         System.out.println("Description: " + this.description);
@@ -207,6 +192,7 @@ public class Members extends Users {
         System.out.println("Friends: " + this.friends);
         System.out.println("Search history: " + this.searchHistory);
         System.out.println("Payment method: \n" + this.paymentMethod);
+        System.out.println("Discount: " + this.discount + "%");
 
         System.out.println("\n\n");
     }

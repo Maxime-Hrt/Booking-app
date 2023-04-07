@@ -75,7 +75,8 @@ public class MainPage {
                 registered = true;
             }
         }
-        member.verifyUser(name, password);
+        member = member.login(name, password);
+        member.printMember();
     }
 
     //Doit obliger les informations obligatoires
