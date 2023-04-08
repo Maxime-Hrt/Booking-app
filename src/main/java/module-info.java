@@ -9,4 +9,7 @@ module com.example.ece_booking {
 
     opens com.example.ece_booking to javafx.fxml;
     exports com.example.ece_booking;
+    exports view;
+    exports controller;
 }
+

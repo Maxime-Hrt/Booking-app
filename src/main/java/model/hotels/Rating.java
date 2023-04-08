@@ -1,9 +1,7 @@
 package model.hotels;
 
-import model.Members;
 import org.bson.Document;
 
-import java.util.ArrayList;
 
 public class Rating {
     private int rating;

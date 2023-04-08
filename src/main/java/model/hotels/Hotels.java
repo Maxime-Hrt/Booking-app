@@ -1,14 +1,8 @@
 package model.hotels;
 
-import com.mongodb.client.MongoClients;
-import dao.AccommodationsDao;
-import model.Data;
-import model.hotels.Adress;
-
 import org.bson.Document;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
 
 public class Hotels {
     private String name, description, category;
@@ -154,13 +148,7 @@ public class Hotels {
         return name;
     }
 
-    static public void main (String[] arg){
-        ArrayList<Hotels> hotels = new Data().getAllHotels();
-
-
-        for(Hotels hotel : hotels){
-            hotel.printHotel();
-            System.out.println();
-        }
+    public Adress getAdress() {
+        return adress;
     }
 }

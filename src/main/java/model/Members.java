@@ -1,15 +1,9 @@
 package model;
 
-import com.mongodb.client.MongoClients;
-import dao.UsersDao;
-import model.hotels.Hotels;
 import org.bson.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Stack;
 
 public class Members extends Users {
     private String id, username, password, gender, country, description, profilePicture;

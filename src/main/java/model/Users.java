@@ -1,14 +1,8 @@
 package model;
 
-import com.mongodb.client.MongoClients;
-import dao.UsersDao;
-import model.hotels.Hotels;
 import org.bson.Document;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
 
 
 public class Users {
@@ -16,10 +10,16 @@ public class Users {
     protected String email, phoneNumber;
     protected PaymentMethod paymentMethod;
     protected int discount;
+    protected Recherche tempSearch;
 
 
     public Users() {
-
+        this.searchHistory = new ArrayList<>();
+        this.email = "";
+        this.phoneNumber = "";
+        this.paymentMethod = new PaymentMethod();
+        this.discount = 0;
+        this.tempSearch = new Recherche();
     }
 
     public Users(Document user) {
@@ -62,9 +62,6 @@ public class Users {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
-
 
         if (user.containsKey("search_history")) {
             this.searchHistory = (ArrayList<String>) user.get("search_history");
@@ -109,5 +106,21 @@ public class Users {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public Recherche getTempSearch() {
+        return tempSearch;
+    }
+
+    public void setTempSearch(Recherche tempSearch) {
+        this.tempSearch = tempSearch;
     }
 }
