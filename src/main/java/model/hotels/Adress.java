@@ -30,4 +30,20 @@ public class Adress {
     public String toString(){
         return number + " " + street + ", " + city + ", " + country;
     }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
 }

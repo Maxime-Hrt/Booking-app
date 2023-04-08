@@ -1,10 +1,7 @@
 package model;
 
-import model.hotels.Hotels;
 import org.bson.Document;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class PastOrder{ //Rajouter ACCOMODATIONS
     String destination;
