@@ -92,6 +92,11 @@ public class WelcomeWindow extends Application {
         // Gestionnaire d'événements du bouton d'inscription
         signUpButton.setOnAction(e -> WelcomeWindowController.signUp());
 
+        guestButton.setOnAction(e -> GuestWindow.guestWindow(stage));
+
+        // Gestionnaire d'événements du bouton invité
+        //guestButton.setOnAction(e -> );
+
         // create the StackPane
         StackPane root = new StackPane();
         root.getChildren().addAll(imageView, grid);

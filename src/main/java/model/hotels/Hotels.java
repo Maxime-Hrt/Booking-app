@@ -148,7 +148,19 @@ public class Hotels {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public Adress getAdress() {
         return adress;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public ArrayList<String> getPhotos() {
+        return photos;
     }
 }

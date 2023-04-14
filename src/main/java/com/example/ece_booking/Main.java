@@ -19,7 +19,7 @@ public class Main {
             choix = mainPage.menu();
             switch (choix) {
                 case 1 -> mainPage.login();
-                case 2 -> mainPage.create_account();
+                //case 2 -> mainPage.create_account();
                 case 3 -> {
                     user.setTempSearch(new Recherche().makeAResearch());
                     user.getTempSearch().printSearch();

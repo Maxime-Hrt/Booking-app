@@ -1,5 +1,7 @@
 package model;
 
+import com.mongodb.client.MongoClients;
+import dao.UsersDao;
 import org.bson.Document;
 
 import java.time.LocalDate;
@@ -189,6 +191,27 @@ public class Members extends Users {
         System.out.println("Discount: " + this.discount + "%");
 
         System.out.println("\n\n");
+    }
+
+    public void create_account(String username, String email, String password, String place, String gender, String phoneNumber){
+        UsersDao usersDao = new UsersDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Users");
+
+        Document toInsert = new Document();
+        toInsert.append("admin", false);
+        toInsert.append("username", username);
+        toInsert.append("email", email);
+        toInsert.append("password", password);
+
+        toInsert.append("country", place);
+        toInsert.append("gender", gender);
+        toInsert.append("phone_number", phoneNumber);
+
+        toInsert.append("created_at", DateTime.date_actual());
+        usersDao.insertUser(toInsert);
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     static public void main(String[] args) {
