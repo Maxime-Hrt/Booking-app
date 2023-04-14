@@ -1,0 +1,19 @@
+.grid-background {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    /*-fx-background-position: center 0;*/
+    -fx-border-radius: 10px;
+    -fx-max-height: 30%;
+}
+
+.search-button {
+    -fx-background-color: #00bfff;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+}

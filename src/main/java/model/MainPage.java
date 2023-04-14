@@ -20,6 +20,7 @@ public class MainPage {
         this.searchDone = searchDone;
     }
 
+
     public void login(){
         Scanner sc = new Scanner(System.in);
         String str_tempo = null, password = null, email = null, username = null, name = null;
@@ -35,6 +36,7 @@ public class MainPage {
             } else {
                 username = str_tempo;
             }*/
+
             System.out.println("Enter your password: ");
             password = sc.nextLine();
             System.out.println("Log In? (y/n)");
@@ -48,6 +50,7 @@ public class MainPage {
     }
 
     //Doit obliger les informations obligatoires
+    /*
     public void create_account(){
         UsersDao usersDao = new UsersDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Users");
         ArrayList<Document> allUsers = (ArrayList<Document>) usersDao.getAllUsers();
@@ -158,7 +161,12 @@ public class MainPage {
         }
         toInsert.append("created_at", DateTime.date_actual());
         usersDao.insertUser(toInsert);
-    }
+    }*/
+
+
+
+
+
 
     public int menu(){
         Scanner sc = new Scanner(System.in);

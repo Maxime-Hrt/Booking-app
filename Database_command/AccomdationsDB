@@ -377,4 +377,106 @@
     ]
 }
 
+{
+    "name": "JW Marriott, Hotel Kuala Lumpur"
+    "description": "The iconic JW Marriott Hotel Kuala Lumpur sits in the heart of Bukit Bintang, Kuala Lumpur's central business and entertainment district. Known as The Happening Hotel, this luxury, 738-room hotel offers exceptional experiences that are both warm and genuine for extraordinary stays in Malaysia. Select one of our 18 event venues and host a dynamic meeting, conference or wedding in Kuala Lumpur. Dine at the cutting-edge Shook! restaurant or Luk Yu Tea House before you retire to a spacious hotel suite or poolside room. Reserve your luxury stay at JW Marriott Hotel Kuala Lumpur in Malaysia.",
+    "address": {
+        "number": 183,
+        "street": "Jalan Bukit Bintang",
+        "city": "Kuala Lumpur",
+        "country": "Malaysia"
+    },
+    "rating": [
+        {
+            "rating": 5,
+            "comment": "I really enjoy Malaysia, and espcially Nasi Kandar Rasmeena where we Bakan Bakan every evening",
+            "author": "Rayane Bouaitta"
+        },
+        {
+            "rating": 3,
+            "comment": "Nice room and accomodation, disturbed a bit by the room cleaner every morning",
+            "author": "Maxime Heurtevent"
+        },
+        {
+            "rating": 4,
+            "comment": "Kami enjoy hotel tu, nak balik if in KL lagi",
+            "author": "Sufyan Afidulah"
+        },
+        {
+            "rating": 4,
+            "comment": "good value for money",
+            "author": "Mael Loret"
+        }
+    ],
+    "category": "Hotel",
+    "amenities": [
+        "Outdoor Pool",
+        "Laundry",
+        "Fitness center",
+        "Restaurant",
+        "Free Wi-Fi",
+        "Prayer room",
+        "Open space",
+        "Daily Housekeeping"
+    ],
+    "activities": [
+        "KLGateway mall",
+        "KJL line",
+        "Petronas Towers",
+        "Little india",
+        "Chinatown",
+        "University Malaya"
+    ],
+    "rooms": [
+        {
+            "type": "Superior King",
+            "price": 140,
+            "dates": [
+                ISODate("2023-04-01"),
+                ISODate("2023-04-02"),
+                ISODate("2023-04-05")
+            ],
+            "numberOfPax": 2,
+            "photos": [
+                "https://cache.marriott.com/content/dam/marriott-renditions/KULDT/kuldt-king-superior-1121-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
+            ]
+        },
+        {
+            "type": "Deluxe King",
+            "price": 230,
+            "dates": [
+                ISODate("2023-04-03"),
+                ISODate("2023-04-04"),
+                ISODate("2023-04-05"),
+                ISODate("2023-04-06")
+            ],
+            "numberOfPax": 2,
+            "photos": [
+                "https://cache.marriott.com/content/dam/marriott-renditions/KULDT/kuldt-king-2832-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
+            ]
+        },
+        {
+            "type": "Presidential Suite",
+            "price": 1210,
+            "dates": [
+                ISODate("2023-04-05"),
+                ISODate("2023-04-06"),
+                ISODate("2023-04-07")
+            ],
+            "numberOfPax": 6,
+            "photos": [
+                "https://cache.marriott.com/content/dam/marriott-renditions/KULDT/kuldt-suite-0055-hor-wide.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1336px:*"
+            ]
+        }
+    ],
+    "contact": {
+        "phone": "+60327159000",
+        "website": "https://www.marriott.com/en-us/hotels/kuldt-jw-marriott-hotel-kuala-lumpur/overview/?scid=f2ae0541-1279-4f24-b197-a979c79310b0"
+    },
+    "add_by_an_user": false,
+    "photos": [
+        "https://foto.hrsstatic.com/fotos/3/3/1280/1280/80/FFFFFF/http%3A%2F%2Ffoto-origin.hrsstatic.com%2Ffoto%2F0%2F5%2F3%2F2%2F053224%2F053224_x_24493645.jpg/UJ3kjrbeci%2FAJmq6%2FfRN6A%3D%3D/1024%2C683/6/JW_Marriott_Hotel_Kuala_Lumpur-Kuala_Lumpur-Banquet_hall-1-53224.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/b3/3e/38/lobby.jpg?w=700&h=-1&s=1"
+    ]
+}
 

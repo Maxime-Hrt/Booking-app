@@ -8,8 +8,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Data;
+import model.Members;
+
+import java.util.ArrayList;
 
 public class WelcomeWindowController {
 
@@ -17,12 +22,16 @@ public class WelcomeWindowController {
         String username = userTextField.getText();
         String password = pwBox.getText();
 
-        if (username.equals("admin") && password.equals("admin")) {
-            actiontarget.setFill(Color.GREEN);
-            actiontarget.setText("Login successful");
-        } else {
+        Members member = new Members();
+
+        if (!member.verifyUser(username, password)) {
             actiontarget.setFill(Color.RED);
             actiontarget.setText("Incorrect username or password");
+        } else {
+            actiontarget.setFill(Color.GREEN);
+            actiontarget.setText("Login successful");
+            member = new Members(member.findUser(username, password));
+            member.printMember();
         }
     }
 
@@ -39,19 +48,19 @@ public class WelcomeWindowController {
         signUpGrid.setPadding(new Insets(25, 25, 25, 25));
 
         // Ajout du champ d'identifiant
-        Label signUpUserName = new Label("User Name:");
+        Label signUpUserName = new Label("* User Name:");
         signUpGrid.add(signUpUserName, 0, 1);
         TextField signUpUserTextField = new TextField();
         signUpGrid.add(signUpUserTextField, 1, 1);
 
         // Ajout du champ d'email
-        Label signUpEmail = new Label("Email:");
+        Label signUpEmail = new Label("* Email:");
         signUpGrid.add(signUpEmail, 0, 2);
         TextField signUpEmailTextField = new TextField();
         signUpGrid.add(signUpEmailTextField, 1, 2);
 
         // Ajout du champ de mot de passe
-        Label signUpPw = new Label("Password:");
+        Label signUpPw = new Label("* Password:");
         signUpGrid.add(signUpPw, 0, 3);
         PasswordField signUpPwBox = new PasswordField();
         signUpGrid.add(signUpPwBox, 1, 3);
@@ -86,11 +95,59 @@ public class WelcomeWindowController {
         signUpHbBtn.getChildren().add(signUpBtn);
         signUpGrid.add(signUpHbBtn, 1, 7);
 
+        Label signUpRequired = new Label("* Required");
+        signUpRequired.setTextFill(Color.RED);
+        signUpRequired.setAlignment(Pos.BOTTOM_RIGHT);
+        signUpRequired.setFont(Font.font("Arial", 10));
+        signUpGrid.add(signUpRequired, 0, 7);
+
+
+        Members member = new Members();
+        final Text actiontarget = new Text();
+        signUpGrid.add(actiontarget, 1, 8);
+
         // Gestionnaire d'événements du bouton d'inscription
         signUpBtn.setOnAction(e2 -> {
+            actiontarget.setText("");
+            Data data = new Data();
+            ArrayList<Members> members = data.getAllMembers();
+
             String signUpUsername = signUpUserTextField.getText();
+            if (signUpUsername.isEmpty()) {
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("Username is required");
+                return;
+            }
             String signUpPassword = signUpPwBox.getText();
+            if (signUpPassword.isEmpty()) {
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("Password is required");
+                return;
+            }
             String signUpEmailStr = signUpEmailTextField.getText();
+            if (signUpEmailStr.isEmpty()) {
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("Email is required");
+                return;
+            }
+            for (Members member1 : members){
+                if (member1.getUsername().equals(signUpUsername)) {
+                    actiontarget.setFill(Color.RED);
+                    actiontarget.setText("Username already exists");
+                    return;
+                }
+                if (member1.getEmail().equals(signUpEmailStr)) {
+                    actiontarget.setFill(Color.RED);
+                    actiontarget.setText("Email already exists");
+                    return;
+                }
+            }
+            if (signUpPassword.length() < 8) {
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("Password must be at least 8 characters");
+                return;
+            }
+
             String selectedGender = comboBoxGender.getValue();
             String selectedCountry = comboBoxCountry.getValue();
             String signUpPhoneStr = signUpPhoneTextField.getText();
@@ -103,7 +160,7 @@ public class WelcomeWindowController {
             System.out.println("Phone: " + signUpPhoneStr);
 
             // Insérer ici le code pour l'ajout d'un nouvel utilisateur dans la base de données ou dans un fichier
-
+            member.create_account(signUpUsername, signUpEmailStr, signUpPassword, selectedCountry, selectedGender, signUpPhoneStr);
             // Fermeture de la fenêtre d'inscription après l'enregistrement
             signUpStage.close();
         });
