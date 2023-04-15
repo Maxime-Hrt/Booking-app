@@ -163,4 +163,20 @@ public class Hotels {
     public ArrayList<String> getPhotos() {
         return photos;
     }
+
+    public ArrayList<Rating> getRatings() {
+        return ratings;
+    }
+
+    public ArrayList<String> getAmenities() {
+        return amenities;
+    }
+
+    public ArrayList<String> getActivities() {
+        return activities;
+    }
+
+    public ArrayList<Rooms> getRooms() {
+        return rooms;
+    }
 }

@@ -2,3 +2,10 @@
     -fx-background-radius: 10px;
     -fx-background-color: rgba(255, 255, 255);
 }
+
+.background-yellow{
+    -fx-background-color: #FFD700;
+    -fx-border-color: #FFD700;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
