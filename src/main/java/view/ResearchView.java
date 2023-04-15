@@ -1,8 +1,10 @@
 package view;
 
+import controller.GuestController;
+import controller.ResearchController;
+import controller.WelcomeWindowController;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -88,8 +90,70 @@ public class ResearchView {
             grid.getStyleClass().add("grid-hotel-component");
             grid.getStylesheets().add("file:src/main/resources/CSS_files/Hotel.css");
 
+
+            //todo: faire en sorte que ca marche avec Members
+            grid.setOnMouseClicked(e -> ResearchController.HotelData(stage, hotel, user));
+
             pageScrolling.getChildren().add(grid);
         }
+
+        GridPane research = new GridPane();
+        research.setHgap(30);
+        research.setVgap(5);
+        research.setPadding(new Insets(25));
+
+        ImageView imageView = new ImageView("file:src/main/resources/Assets/UserGuest.png");
+        imageView.setFitWidth(60);
+        imageView.setFitHeight(60);
+        imageView.setOnMouseClicked(mouseEvent -> {
+            WelcomeWindowController.signUp();
+        });
+        research.add(imageView, 4, 0);
+
+        Text Destination = new Text("Destination");
+        Destination.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+        Destination.setFill(Color.WHITE);
+        research.add(Destination, 0, 1);
+        TextField DestinationTextField = new TextField();
+        research.add(DestinationTextField, 0, 2);
+
+        Label checkInLabel = new Label("Check-in");
+        checkInLabel.setTextFill(Color.WHITE);
+        research.add(checkInLabel, 1, 1);
+        DatePicker checkIn = new DatePicker();
+        research.add(checkIn, 1, 2);
+
+        Label checkOutLabel = new Label("Check-out");
+        checkOutLabel.setTextFill(Color.WHITE);
+        research.add(checkOutLabel, 2, 1);
+        DatePicker checkOut = new DatePicker();
+        research.add(checkOut, 2, 2);
+
+        Label nbGuestsLabel = new Label("Number of guests");
+        nbGuestsLabel.setTextFill(Color.WHITE);
+        research.add(nbGuestsLabel, 3, 1);
+        TextField nbGuests = new TextField();
+        research.add(nbGuests, 3, 2);
+
+        Button searchButton = new Button("Search");
+        searchButton.getStyleClass().add("search-button");
+        searchButton.getStylesheets().add("file:src/main/resources/CSS_files/GuestPage.css");
+        research.add(searchButton, 4, 2);
+
+
+        final Text actiontarget = new Text();
+        research.add(actiontarget, 1, 6);
+        research.setBackground(new Background(new BackgroundFill(Color.rgb(211, 167, 1), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        /*
+        Label searchHistoryLabel = new Label("Search history");
+        grid.add(searchHistoryLabel, 0, 3);
+        VBox vbox = new VBox(10);
+        vbox.setAlignment(Pos.CENTER);
+        grid.add(vbox, 0, 4);*/
+
+        // Make a research
+        searchButton.setOnAction(e-> GuestController.Search(user, DestinationTextField, checkIn, checkOut, nbGuests, actiontarget, stage));
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pageScrolling);
@@ -100,7 +164,7 @@ public class ResearchView {
 
         VBox layout = new VBox(30);
         layout.setPadding(new Insets(25));
-        layout.getChildren().addAll(scenetitle, scrollPane);
+        layout.getChildren().addAll(research, scenetitle, scrollPane);
 
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #043580");

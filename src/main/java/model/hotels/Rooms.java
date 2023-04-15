@@ -33,4 +33,24 @@ public class Rooms {
         System.out.println("\tUnavailable dates: " + this.unavailableDates);
         System.out.println("\tPhotos: " + this.photos + "\n");
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getNumber_of_pax() {
+        return number_of_pax;
+    }
+
+    public ArrayList<LocalDate> getUnavailableDates() {
+        return unavailableDates;
+    }
+
+    public ArrayList<String> getPhotos() {
+        return photos;
+    }
 }
