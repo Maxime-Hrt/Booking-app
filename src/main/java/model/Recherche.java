@@ -83,6 +83,14 @@ public class Recherche {
         return new Recherche(destination, dateOfArrival1, dateOfDeparture1, nbOfPax);
     }
 
+    public void setDateOfArrival(LocalDate dateOfArrival) {
+        this.dateOfArrival = dateOfArrival;
+    }
+
+    public void setDateOfDeparture(LocalDate dateOfDeparture) {
+        this.dateOfDeparture = dateOfDeparture;
+    }
+
     public void setSearchDone(boolean searchDone) {
         isSearchDone = searchDone;
     }

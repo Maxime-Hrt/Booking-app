@@ -29,6 +29,8 @@ public class WelcomeWindow extends Application {
         ImageView imageView = new ImageView("file:src/main/resources/Assets/WelcomePicture.jpg");
         imageView.setFitWidth(1086);
         imageView.setFitHeight(724);
+        Image icon = new Image("https://play-lh.googleusercontent.com/qoM90k1-aPY2ChxB8WD_XkjDNIGtZFGhqWUuitUJ1R3jcZUFWrSg4E2sDZc_nV_eCjk");
+        stage.getIcons().add(icon);
 
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
@@ -81,10 +83,6 @@ public class WelcomeWindow extends Application {
         // Ajout du message d'erreur
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
-
-        guestButton.setOnAction(e -> {
-
-        });
 
         // Gestionnaire d'événements du bouton de connexion
         btn.setOnAction(e -> WelcomeWindowController.login(userTextField, pwBox, actiontarget));
