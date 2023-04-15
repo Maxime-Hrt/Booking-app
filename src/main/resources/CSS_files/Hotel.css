@@ -9,3 +9,17 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
+
+.background-blue{
+    -fx-background-color: #043580;
+    -fx-border-color: #043580;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.background-white{
+    -fx-background-color: #FFF;
+    -fx-border-color: #FFF;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
