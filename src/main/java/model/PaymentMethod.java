@@ -31,6 +31,11 @@ public class PaymentMethod {
         this.cvv = paymentMethod.getString("security_code");
     }
 
+    //last 4 numbers
+    public String getLast4Numbers(){
+        return this.cardNumber.substring(this.cardNumber.length() - 4);
+    }
+
 
 
     public String toString(){

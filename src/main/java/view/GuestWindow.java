@@ -28,9 +28,9 @@ import model.Users;
 import java.util.ArrayList;
 
 public class GuestWindow {
-    static void guestWindow(Stage stage) {
+    static void guestWindow(Stage stage, Users user) {
         stage.setTitle("ECE-BOOKING - Guest");
-        Users user = new Users();
+
 
         Rectangle rect = new Rectangle(1086, 724);
         rect.setFill(Color.YELLOWGREEN);
@@ -95,7 +95,8 @@ public class GuestWindow {
         grid.add(vbox, 0, 4);*/
 
         // Make a research
-        searchButton.setOnAction(e -> GuestController.Search(user, DestinationTextField, checkIn, checkOut, nbGuests, actiontarget, stage));
+        Users finalUser = user;
+        searchButton.setOnAction(e -> GuestController.Search(finalUser, DestinationTextField, checkIn, checkOut, nbGuests, actiontarget, stage));
         //vbox.getChildren().clear();
 
         StackPane root = new StackPane();

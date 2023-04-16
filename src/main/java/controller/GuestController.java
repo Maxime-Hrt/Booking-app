@@ -74,7 +74,5 @@ public class GuestController {
         }
 
         ResearchView.printResearch(stage, user, null);
-
-
     }
 }

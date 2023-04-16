@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import model.Users;
 
 
 public class WelcomeWindow extends Application {
@@ -90,7 +91,8 @@ public class WelcomeWindow extends Application {
         // Gestionnaire d'événements du bouton d'inscription
         signUpButton.setOnAction(e -> WelcomeWindowController.signUp());
 
-        guestButton.setOnAction(e -> GuestWindow.guestWindow(stage));
+        //todo: Verifier la null value
+        guestButton.setOnAction(e -> GuestWindow.guestWindow(stage, new Users()));
 
         // Gestionnaire d'événements du bouton invité
         //guestButton.setOnAction(e -> );
