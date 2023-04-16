@@ -82,7 +82,7 @@ public class Room_RecapController {
             return;
         }
         users.setPaymentMethod(new PaymentMethod(cardNumber.getText(), cardExpiration.getValue(), cvc.getText()));
-        System.out.println("WOUHOUUUUUU");
+        System.out.println("WOUHOUUUUUU MERCI DE LA COMMANDE");
         EndView.endView(stage, users, name.getText(), email.getText(), null);
     }
     static public void ApplyCoupon(Stage stage, Rooms room, Hotels hotel, Users user, TextField coupon, Text actiontarget, boolean codeAlreadyUsed){

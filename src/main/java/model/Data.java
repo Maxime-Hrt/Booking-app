@@ -41,4 +41,8 @@ public class Data {
         }
         return membersList;
     }
+
+    public UsersDao getUserDao() {
+        return tabOfUsers;
+    }
 }

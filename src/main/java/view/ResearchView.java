@@ -109,7 +109,7 @@ public class ResearchView {
                 imageView.setFitWidth(60);
                 imageView.setFitHeight(60);
                 imageView.setOnMouseClicked(mouseEvent -> {
-                    WelcomeWindowController.signUp();
+                    WelcomeWindowController.signUp(stage);
                 });
                 research.add(imageView, 4, 0);
 

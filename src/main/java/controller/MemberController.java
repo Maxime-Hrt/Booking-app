@@ -23,12 +23,12 @@ import java.time.LocalDate;
 
 public class MemberController {
 
-    public static ImageView defaultImageSignUp() {
+    public static ImageView defaultImageSignUp(Stage stage) {
         ImageView imageView = new ImageView("file:src/main/resources/Assets/UserGuest.png");
         imageView.setFitWidth(60);
         imageView.setFitHeight(60);
         imageView.setOnMouseClicked(mouseEvent -> {
-            WelcomeWindowController.signUp();
+            WelcomeWindowController.signUp(stage);
         });
         return imageView;
     }

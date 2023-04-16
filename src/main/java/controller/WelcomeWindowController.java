@@ -30,15 +30,18 @@ public class WelcomeWindowController {
             actiontarget.setFill(Color.RED);
             actiontarget.setText("Incorrect username or password");
         } else {
-            actiontarget.setFill(Color.GREEN);
-            actiontarget.setText("Login successful");
+            if (actiontarget != null){
+                actiontarget.setFill(Color.GREEN);
+                actiontarget.setText("Login successful");
+            }
+
             member = new Members(member.findUser(username, password));
             member.printMember();
             MemberWindow.memberWindow(stage, member);
         }
     }
 
-    static public void signUp() {
+    static public void signUp(Stage stage) {
         // Création de la nouvelle fenêtre d'inscription
         Stage signUpStage = new Stage();
         signUpStage.setTitle("Sign Up");
@@ -165,9 +168,15 @@ public class WelcomeWindowController {
             //Todo: APPELER LA METHODE DEFINI POUR LOGIN EN HAUT
 
             // Insérer ici le code pour l'ajout d'un nouvel utilisateur dans la base de données ou dans un fichier
-            member.create_account(signUpUsername, signUpEmailStr, signUpPassword, selectedCountry, selectedGender, signUpPhoneStr);;
+            member.create_account(signUpUsername, signUpEmailStr, signUpPassword, selectedCountry, selectedGender, signUpPhoneStr);
             // Fermeture de la fenêtre d'inscription après l'enregistrement
             signUpStage.close();
+
+            TextField username = new TextField();
+            username.setText(signUpUsername);
+            PasswordField password = new PasswordField();
+            password.setText(signUpPassword);
+            login(username, password, null, stage);
         });
 
         // Création de la scène de la fenêtre d'inscription

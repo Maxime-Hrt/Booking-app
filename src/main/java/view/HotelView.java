@@ -145,7 +145,7 @@ public class HotelView {
         Label registerLabel = new Label("You have to register to access promotions");
         registerLabel.setWrapText(true);
         Button registerButton = new Button("Register");
-        registerButton.setOnAction(actionEvent -> WelcomeWindowController.signUp());
+        registerButton.setOnAction(actionEvent -> WelcomeWindowController.signUp(stage));
         vBox2.getChildren().addAll(registerLabel, registerButton);
         vBox2.getStyleClass().add("background-yellow");
         vBox2.getStylesheets().add("file:src/main/resources/CSS_files/Hotel.css");

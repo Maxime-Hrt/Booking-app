@@ -25,4 +25,10 @@ public class PastOrder{ //Rajouter ACCOMODATIONS
     public String toString(){
         return "Destination: " + this.destination + " | Date of arrival: " + this.dateOfArrival + " | Date of departure: " + this.dateOfDeparture;
     }
+
+    public Document toDocument() {
+        return new Document("destination", this.destination)
+                .append("date_of_arrival", this.dateOfArrival)
+                .append("date_of_departure", this.dateOfDeparture);
+    }
 }

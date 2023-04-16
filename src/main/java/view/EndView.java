@@ -7,8 +7,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
+import model.Data;
 import model.Members;
+import model.PastOrder;
 import model.Users;
+import org.bson.Document;
+
+import java.util.ArrayList;
 
 public class EndView {
     static public <Membres> void endView(Stage stage, Users user, String name, String email, GridPane gridMember) {
@@ -37,14 +42,24 @@ public class EndView {
 
         Button okButton = new Button("Back to the menu");
         okButton.setOnAction(e -> {
-            endStage.close();
             if(user instanceof Members){
+                Data data = new Data();
+                ArrayList<Document> allUsers = data.getAllUsers();
+                ((Members) user).addOrder(
+                        new PastOrder(user.getTempSearch().getDestination(),
+                                user.getTempSearch().getDateOfArrival(),
+                                user.getTempSearch().getDateOfDeparture())
+                );
+
+                System.out.println(((Members) user).getOrder_history());
+
+                ((Members) user).upDate();
                 MemberWindow.memberWindow(stage, (Members) user);
             }
             else{
                 GuestWindow.guestWindow(stage, user);
             }
-
+            endStage.close();
         });
 
         vBox.getChildren().addAll(thx, emailLabel, okButton);

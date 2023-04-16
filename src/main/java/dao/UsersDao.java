@@ -39,6 +39,10 @@ public class UsersDao implements IUsersDao{
         this.usersCollection.replaceOne(new Document("_id", id), user);
     }
 
+    public void updateUserEmail(String email, Document user) {
+        this.usersCollection.replaceOne(new Document("email", email), user);
+    }
+
     @Override
     public void deleteUser(Object id) {
         this.usersCollection.deleteOne(new Document("_id", id));

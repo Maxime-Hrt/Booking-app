@@ -51,7 +51,11 @@ public class Review {
     public int getRating() {
         return rating;
     }
-
+    public Document toDocument() {
+        return new Document("comment", this.comment)
+                .append("destination", this.destination)
+                .append("rating", this.rating);
+    }
     public String toString() {
         return this.comment + " " + this.destination + " " + this.rating;
     }
