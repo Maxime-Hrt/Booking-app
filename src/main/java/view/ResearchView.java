@@ -169,7 +169,9 @@ public class ResearchView {
             VBox layout = new VBox(30);
             layout.setPadding(new Insets(25));
             if (user instanceof Members) {
-                layout.getChildren().addAll(MemberController.gridPaneMember(stage,(Members) user), scenetitle, scrollPane);
+                Button logout = new Button("Logout");
+                logout.setOnAction(e -> GuestWindow.guestWindow(stage, new Users()));
+                layout.getChildren().addAll(logout, MemberController.gridPaneMember(stage,(Members) user), scenetitle, scrollPane);
             } else {
                 layout.getChildren().addAll(research, scenetitle, scrollPane);
             }

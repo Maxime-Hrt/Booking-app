@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -24,7 +25,15 @@ public class MemberWindow {
         stage.setTitle("Member Window");
         //todo: définir les cliques sur image
 
-        Scene scene = new Scene(MemberController.gridPaneMember(stage, member), 1086, 724);
+        GridPane gridPaneNavBar = MemberController.gridPaneMember(stage, member);
+        GridPane gridPane = MemberController.menuMember(member, stage);
+        VBox vBox = new VBox(40);
+        vBox.getChildren().addAll(gridPaneNavBar, gridPane);
+        vBox.setAlignment(Pos.CENTER);
+        vBox.getStyleClass().add("background-blue");
+        vBox.getStylesheets().add("file:src/main/resources/CSS_files/Hotel.css");
+
+        Scene scene = new Scene(vBox, 1086, 724);
         stage.setScene(scene);
         stage.show();
     }

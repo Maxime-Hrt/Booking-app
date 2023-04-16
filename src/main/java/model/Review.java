@@ -57,6 +57,6 @@ public class Review {
                 .append("rating", this.rating);
     }
     public String toString() {
-        return this.comment + " " + this.destination + " " + this.rating;
+        return this.comment + "\n" + this.destination + "  " + this.rating;
     }
 }

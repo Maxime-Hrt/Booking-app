@@ -61,9 +61,11 @@ public class Room_RecapView {
         if (user instanceof Members) {
             nameField.setText(((Members) user).getUsername());
             emailField.setText(((Members) user).getEmail());
-            cardNumberField.setText(((Members) user).getPaymentMethod().getCardNumber());
-            cardDateField.setValue(((Members) user).getPaymentMethod().getExpirationDate());
-            cardCVCField.setText(((Members) user).getPaymentMethod().getCvv());
+            if (((Members) user).getPaymentMethod() != null) {
+                cardNumberField.setText(((Members) user).getPaymentMethod().getCardNumber());
+                cardDateField.setValue(((Members) user).getPaymentMethod().getExpirationDate());
+                cardCVCField.setText(((Members) user).getPaymentMethod().getCvv());
+            }
         }
 
         paymentMethod.add(name, 0, 0, 2, 1);

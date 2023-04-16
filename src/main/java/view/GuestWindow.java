@@ -83,6 +83,9 @@ public class GuestWindow {
         searchButton.getStylesheets().add("file:src/main/resources/CSS_files/GuestPage.css");
         grid.add(searchButton, 4, 2);
 
+        Button loginButton = new Button("Login");
+        loginButton.setOnAction(e -> WelcomeWindowController.loginPortable(stage));
+        grid.add(loginButton, 5, 0);
 
         final Text actiontarget = new Text();
         grid.add(actiontarget, 1, 6);
