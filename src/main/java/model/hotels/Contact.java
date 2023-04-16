@@ -8,6 +8,12 @@ public class Contact {
     public Contact() {
     }
 
+    public Contact(String phone, String email, String website) {
+        this.phone = phone;
+        this.email = email;
+        this.website = website;
+    }
+
     public Contact(Document hotel){
         if (hotel.containsKey("phone")) {
             this.phone = hotel.getString("phone");
@@ -24,6 +30,12 @@ public class Contact {
         } else {
             this.website = "No website found";
         }
+    }
+
+    public Document toDocument() {
+        return new Document("phone", this.phone)
+                .append("email", this.email)
+                .append("website", this.website);
     }
 
     public void printContact(){

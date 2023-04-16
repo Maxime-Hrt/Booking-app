@@ -12,6 +12,7 @@ public class Rating {
     public Rating() {
     }
 
+
     public Rating(int rating, String comment, String author){ //Members member) {
         try{
             if (rating < 0 || rating > 5) {
@@ -40,6 +41,12 @@ public class Rating {
         }
         this.comment = rating.getString("comment");
         this.author = rating.getString("author");
+    }
+
+    public Document toDocument() {
+        return new Document("rating", this.rating)
+                .append("comment", this.comment)
+                .append("author", this.author);
     }
 
 

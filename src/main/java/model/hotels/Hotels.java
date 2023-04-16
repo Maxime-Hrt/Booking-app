@@ -1,7 +1,10 @@
 package model.hotels;
 
+import com.mongodb.client.MongoClients;
+import dao.AccommodationsDao;
 import org.bson.Document;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Hotels {
@@ -17,13 +20,27 @@ public class Hotels {
 
     }
 
-    public Hotels(Document hotel){
+    public Hotels(String name, String description, String category, Adress adress, ArrayList<Rating> ratings, ArrayList<String> amenities, ArrayList<String> activities, ArrayList<String> photos, ArrayList<Rooms> rooms, Contact contact, boolean add_by_user) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.adress = adress;
+        this.ratings = ratings;
+        this.amenities = amenities;
+        this.activities = activities;
+        this.photos = photos;
+        this.rooms = rooms;
+        this.contact = contact;
+        this.add_by_user = add_by_user;
+    }
+
+    public Hotels(Document hotel) {
         try {
             if (!hotel.containsKey("name")) {
                 throw new Exception("No name found");
             }
             this.name = hotel.getString("name");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         try {
@@ -31,7 +48,7 @@ public class Hotels {
                 throw new Exception("No description found");
             }
             this.description = hotel.getString("description");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         try {
@@ -39,7 +56,7 @@ public class Hotels {
                 throw new Exception("No category found");
             }
             this.category = hotel.getString("category");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         try {
@@ -47,7 +64,7 @@ public class Hotels {
                 throw new Exception("No address found");
             }
             this.adress = new Adress(hotel);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -68,7 +85,6 @@ public class Hotels {
             System.out.println(e.getMessage());
             this.ratings = new ArrayList<>();
         }
-
 
 
         if (hotel.containsKey("amenities")) {
@@ -109,7 +125,7 @@ public class Hotels {
                 throw new Exception("No add_by_an_user found");
             }
             this.add_by_user = hotel.getBoolean("add_by_an_user");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         if (hotel.containsKey("photos")) {
@@ -119,14 +135,49 @@ public class Hotels {
         }
     }
 
-    public void printHotel(){
+    public Document toDocument() {
+        Document toUpdate = new Document();
+
+        // Add fields to the Document object
+        toUpdate.append("name", this.name);
+        toUpdate.append("description", this.description);
+        toUpdate.append("category", this.category);
+        toUpdate.append("address", this.adress.toDocument());
+        toUpdate.append("amenities", this.amenities);
+        toUpdate.append("activities", this.activities);
+
+        List<Document> ratingDocs = new ArrayList<>();
+        for (Rating rating : this.ratings) {
+            ratingDocs.add(rating.toDocument());
+        }
+        toUpdate.append("rating", ratingDocs);
+
+        List<Document> roomDocs = new ArrayList<>();
+        for (Rooms room : this.rooms) {
+            roomDocs.add(room.toDocument());
+        }
+        toUpdate.append("rooms", roomDocs);
+
+        toUpdate.append("contact", this.contact.toDocument());
+        toUpdate.append("add_by_an_user", this.add_by_user);
+        toUpdate.append("photos", this.photos);
+
+        return toUpdate;
+    }
+
+    public void upDate() {
+        AccommodationsDao dataHotels = new AccommodationsDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Accomodations");
+        dataHotels.updateAccommodationName(this.name, this.toDocument());
+    }
+
+    public void printHotel() {
         System.out.println("Name : " + this.name);
         System.out.println("Description : " + this.description);
         System.out.println("Category : " + this.category);
         System.out.println("Adress : " + this.adress);
 
         System.out.println("Ratings : ");
-        for(Rating rating : this.ratings){
+        for (Rating rating : this.ratings) {
             rating.printRating();
         }
 
@@ -134,7 +185,7 @@ public class Hotels {
         System.out.println("Activities : " + this.activities);
 
         System.out.println("Rooms : ");
-        for(Rooms room : this.rooms){
+        for (Rooms room : this.rooms) {
             room.printRoom();
         }
 
@@ -178,5 +229,12 @@ public class Hotels {
 
     public ArrayList<Rooms> getRooms() {
         return rooms;
+    }
+
+    static public void main(String[] args) {
+        AccommodationsDao acoD = new AccommodationsDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Accomodations");
+        List<Document> hotel = acoD.getAllAccommodations();
+        (new Hotels(hotel.get(0))).printHotel();
+        System.out.println(hotel.get(0).toJson());
     }
 }
