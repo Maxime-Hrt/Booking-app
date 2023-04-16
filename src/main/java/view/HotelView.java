@@ -76,14 +76,15 @@ public class HotelView {
         gridPane.add(adresse, 1, 1);
 
         // Ajout de la photo dans les 2 dernières colonnes de la 3ème ligne
-        ImageView photoHotel1 = new ImageView(hotel.getPhotos().get(0));
-        photoHotel1.setFitWidth(400);//320
-        photoHotel1.setFitHeight(300);//240
+        //ImageView photoHotel1 = new ImageView(hotel.getPhotos().get(0));
+        //photoHotel1.setFitWidth(400);//320
+        //photoHotel1.setFitHeight(300);//240
         //TODO: Photo2 avec les margins
         //ImageView photoHotel2 = new ImageView(hotel.getPhotos().get(1));
         //photoHotel2.setFitWidth(320);
         //photoHotel2.setFitHeight(240);
-        gridPane.add(photoHotel1, 1, 2);
+        VBox photoHotel = Room_RecapView.photoScroll(hotel);
+        gridPane.add(photoHotel, 1, 2);
         //gridPane.add(photoHotel2, 2, 2);
 
         // Ajout de la chaîne de caractères dans les 2 dernières colonnes de la dernière ligne

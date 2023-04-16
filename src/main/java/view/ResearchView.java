@@ -90,8 +90,6 @@ public class ResearchView {
             grid.getStyleClass().add("grid-hotel-component");
             grid.getStylesheets().add("file:src/main/resources/CSS_files/Hotel.css");
 
-
-            //todo: faire en sorte que ca marche avec Members
             grid.setOnMouseClicked(e -> ResearchController.HotelData(stage, hotel, user));
 
             pageScrolling.getChildren().add(grid);

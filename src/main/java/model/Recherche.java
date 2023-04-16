@@ -34,6 +34,10 @@ public class Recherche {
         return dateOfArrival;
     }
 
+    public int getNbOfPax() {
+        return nbOfPax;
+    }
+
     public void printSearch(){
         System.out.println("Destination: " + this.Destination);
         System.out.println("Date of arrival: " + this.dateOfArrival);
