@@ -6,19 +6,21 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Data;
 import model.Members;
+import model.Users;
+import view.GuestWindow;
+import view.MemberWindow;
 
 import java.util.ArrayList;
 
 public class WelcomeWindowController {
 
-    static public void login(TextField userTextField, PasswordField pwBox, Text actiontarget) {
+    static public void login(TextField userTextField, PasswordField pwBox, Text actiontarget, Stage stage) {
         String username = userTextField.getText();
         String password = pwBox.getText();
 
@@ -32,6 +34,7 @@ public class WelcomeWindowController {
             actiontarget.setText("Login successful");
             member = new Members(member.findUser(username, password));
             member.printMember();
+            MemberWindow.memberWindow(stage, member);
         }
     }
 
@@ -159,8 +162,10 @@ public class WelcomeWindowController {
             System.out.println("Gender: " + selectedGender);
             System.out.println("Phone: " + signUpPhoneStr);
 
+            //Todo: APPELER LA METHODE DEFINI POUR LOGIN EN HAUT
+
             // Insérer ici le code pour l'ajout d'un nouvel utilisateur dans la base de données ou dans un fichier
-            member.create_account(signUpUsername, signUpEmailStr, signUpPassword, selectedCountry, selectedGender, signUpPhoneStr);
+            member.create_account(signUpUsername, signUpEmailStr, signUpPassword, selectedCountry, selectedGender, signUpPhoneStr);;
             // Fermeture de la fenêtre d'inscription après l'enregistrement
             signUpStage.close();
         });
@@ -169,5 +174,9 @@ public class WelcomeWindowController {
         Scene signUpScene = new Scene(signUpGrid, 400, 300);
         signUpStage.setScene(signUpScene);
         signUpStage.show();
+    }
+
+    static public void guest(Stage stage) {
+        GuestWindow.guestWindow(stage, new Users());
     }
 }

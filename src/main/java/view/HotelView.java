@@ -15,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Members;
 import model.Users;
 import model.hotels.Hotels;
 import javafx.stage.Stage;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class HotelView {
-    static public void HotelData(Stage stage, Hotels hotel, Users user) {
+    static public void HotelData(Stage stage, Hotels hotel, Users user){
         stage.setTitle(hotel.getName());
 
         // Création du GridPane
@@ -35,7 +36,7 @@ public class HotelView {
         gridPane.setPadding(new Insets(25));
 
         Button backButton = new Button("Back");
-        backButton.setOnAction(actionEvent ->ResearchView.printResearch(stage, user, null));
+        backButton.setOnAction(actionEvent ->ResearchView.printResearch(stage, user));
 
         VBox mainVBox = new VBox(35);
         mainVBox.setPadding(new Insets(25));
@@ -246,7 +247,7 @@ public class HotelView {
             Button bookButton = new Button("Book");
             bookButton.setOnAction(e -> {
                 //TODO: MEMBER
-                HotelController.paymentRecap(stage, room, hotel, user,null);
+                HotelController.paymentRecap(stage, room, hotel, user);
 
             });
             roomGrid.add(bookButton, 3, 0, 4, 2);

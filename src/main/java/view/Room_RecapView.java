@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Members;
 import model.Users;
 import model.hotels.Hotels;
 import model.hotels.Rooms;
@@ -28,7 +29,8 @@ public class Room_RecapView {
     Room_RecapView() {
     }
 
-    static public void roomRecap(Stage stage, Rooms room, Hotels hotel, Users user) {
+
+    static public void roomRecap(Stage stage, Rooms room, Hotels hotel, Users user, boolean codeUsed) {
 
         GridPane paymentMethod = new GridPane();
         paymentMethod.setPadding(new Insets(25));
@@ -54,6 +56,15 @@ public class Room_RecapView {
         Button pay = new Button("Pay");
         Button cancel = new Button("Cancel");
         Text termNotCheck = new Text();
+
+        //Autofill
+        if (user instanceof Members) {
+            nameField.setText(((Members) user).getUsername());
+            emailField.setText(((Members) user).getEmail());
+            cardNumberField.setText(((Members) user).getPaymentMethod().getCardNumber());
+            cardDateField.setValue(((Members) user).getPaymentMethod().getExpirationDate());
+            cardCVCField.setText(((Members) user).getPaymentMethod().getCvv());
+        }
 
         paymentMethod.add(name, 0, 0, 2, 1);
         paymentMethod.add(nameField, 0, 1, 2, 1);
@@ -126,9 +137,10 @@ public class Room_RecapView {
         paymentMethod.add(recap, 2, 6, 3, 5); //3??
 
         //BUTTONS
-        apply.setOnAction(e -> Room_RecapController.ApplyCoupon(stage, room, hotel, user, couponField, couponError));
-        update.setOnAction(e -> Room_RecapController.dateUpdate(stage, room, hotel, user, checkIn, checkOut));
+        apply.setOnAction(e -> Room_RecapController.ApplyCoupon(stage, room, hotel, user, couponField, couponError, codeUsed));
+        update.setOnAction(e -> Room_RecapController.dateUpdate(stage, room, hotel, user, checkIn, checkOut, codeUsed));
         pay.setOnAction(e -> Room_RecapController.termsOfUse(stage, user, termsOfUse, termNotCheck, nameField, emailField, cardNumberField, cardDateField, cardCVCField));
+        //TODO MEMBER
         cancel.setOnAction(e -> HotelView.HotelData(stage, hotel, user));
 
 
@@ -136,6 +148,7 @@ public class Room_RecapView {
         stage.setScene(scene);
         stage.show();
     }
+
 
     static public VBox photoScroll(Hotels hotel){
         AtomicInteger currentIndex = new AtomicInteger();

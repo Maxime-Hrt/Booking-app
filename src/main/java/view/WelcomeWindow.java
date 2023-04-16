@@ -86,13 +86,13 @@ public class WelcomeWindow extends Application {
         grid.add(actiontarget, 1, 6);
 
         // Gestionnaire d'événements du bouton de connexion
-        btn.setOnAction(e -> WelcomeWindowController.login(userTextField, pwBox, actiontarget));
+        btn.setOnAction(e -> WelcomeWindowController.login(userTextField, pwBox, actiontarget, stage));
 
         // Gestionnaire d'événements du bouton d'inscription
         signUpButton.setOnAction(e -> WelcomeWindowController.signUp());
 
         //todo: Verifier la null value
-        guestButton.setOnAction(e -> GuestWindow.guestWindow(stage, new Users()));
+        guestButton.setOnAction(e -> WelcomeWindowController.guest(stage));
 
         // Gestionnaire d'événements du bouton invité
         //guestButton.setOnAction(e -> );

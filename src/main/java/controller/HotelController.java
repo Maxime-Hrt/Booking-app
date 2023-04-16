@@ -14,13 +14,7 @@ import model.hotels.Rooms;
 import view.Room_RecapView;
 
 public class HotelController {
-    static public void paymentRecap(Stage stage, Rooms room, Hotels hotel, Users user, Members member){
-        //MEMBER
-        if (member != null){
-            //Room_RecapView
-
-        } else {
-            Room_RecapView.roomRecap(stage, room, hotel, user);
-        }
+    static public void paymentRecap(Stage stage, Rooms room, Hotels hotel, Users user){
+        Room_RecapView.roomRecap(stage, room, hotel, user, false);
     }
 }

@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -73,6 +74,6 @@ public class GuestController {
             hotel.printHotel();
         }
 
-        ResearchView.printResearch(stage, user, null);
+        ResearchView.printResearch(stage, user);
     }
 }
