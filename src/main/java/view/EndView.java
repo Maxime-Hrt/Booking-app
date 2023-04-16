@@ -3,6 +3,7 @@ package view;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.geometry.Pos;
@@ -10,7 +11,7 @@ import model.Members;
 import model.Users;
 
 public class EndView {
-    static public void endView(Stage stage, Users user, String name, String email, Members member) {
+    static public <Membres> void endView(Stage stage, Users user, String name, String email, GridPane gridMember) {
 
         //Todo: envoi de l'email
         //Todo: Lorsque je retourne au menu utilliser les datas de l'invité
@@ -28,7 +29,7 @@ public class EndView {
         Label emailLabel = new Label("We sent you an email to " + email +
                 " with all the details of the order made by **** **** **** " +
                 user.getPaymentMethod().getLast4Numbers() +
-                ", thank you for trusting us, we look forward to seeing you\n"
+                ", thank you for trusting us, we look forward to seeing you.\n"
         );
         emailLabel.setFont(javafx.scene.text.Font.font("System", 20));
         emailLabel.setWrapText(true);
@@ -37,8 +38,8 @@ public class EndView {
         Button okButton = new Button("Back to the menu");
         okButton.setOnAction(e -> {
             endStage.close();
-            if(member != null){
-                //Todo: retour au menu membre
+            if(user instanceof Members){
+                MemberWindow.memberWindow(stage, (Members) user);
             }
             else{
                 GuestWindow.guestWindow(stage, user);

@@ -28,7 +28,7 @@ import model.Users;
 import java.util.ArrayList;
 
 public class GuestWindow {
-    static void guestWindow(Stage stage, Users user) {
+    static public void guestWindow(Stage stage, Users user) {
         stage.setTitle("ECE-BOOKING - Guest");
 
 

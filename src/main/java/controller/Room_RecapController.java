@@ -3,6 +3,7 @@ package controller;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.PaymentMethod;
@@ -84,18 +85,18 @@ public class Room_RecapController {
         System.out.println("WOUHOUUUUUU");
         EndView.endView(stage, users, name.getText(), email.getText(), null);
     }
-    static public void ApplyCoupon(Stage stage, Rooms room, Hotels hotel, Users user, TextField coupon, Text actiontarget){
+    static public void ApplyCoupon(Stage stage, Rooms room, Hotels hotel, Users user, TextField coupon, Text actiontarget, boolean codeAlreadyUsed){
         actiontarget.setText("");
-        if (coupon.getText().equals("ECE2020")){
-            user.setDiscount(5);
+        if (coupon.getText().equals("ECE2020") && !codeAlreadyUsed){
+            user.setDiscount(user.getDiscount() + 5);
             System.out.println("Coupon applied");
-            Room_RecapView.roomRecap(stage, room, hotel, user);
+            Room_RecapView.roomRecap(stage, room, hotel, user, true);
         } else {
             actiontarget.setText("Invalid coupon");
             actiontarget.setFill(javafx.scene.paint.Color.FIREBRICK);
         }
     }
-    static public void dateUpdate(Stage stage, Rooms room, Hotels hotel, Users user, DatePicker checkIn, DatePicker checkOut){
+    static public void dateUpdate(Stage stage, Rooms room, Hotels hotel, Users user, DatePicker checkIn, DatePicker checkOut, boolean codeAlreadyUsed){
         if(checkIn.getValue() == null){
             System.out.println("Please enter a check-in date");
             return;
@@ -120,6 +121,6 @@ public class Room_RecapController {
         LocalDate checkOutDate = checkOut.getValue();
 
         user.setTempSearch(new Recherche(user.getTempSearch().getDestination(), checkInDate, checkOutDate, user.getTempSearch().getNbOfPax()));
-        Room_RecapView.roomRecap(stage, room, hotel, user);
+        Room_RecapView.roomRecap(stage, room, hotel, user, codeAlreadyUsed);
     }
 }

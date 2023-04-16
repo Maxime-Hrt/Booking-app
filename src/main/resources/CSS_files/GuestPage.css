@@ -8,9 +8,20 @@
 }
 
 .search-button {
-    -fx-background-color: #00bfff;
+    -fx-background-color: #d3a701;
     -fx-background-radius: 10;
     -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+}
+
+.search-button:hover {
+    -fx-background-color: #0F0;
+    -fx-background-radius: 10;
+    -fx-text-fill: #000000;
     -fx-font-size: 20;
     -fx-font-weight: bold;
     -fx-font-family: "Arial";
