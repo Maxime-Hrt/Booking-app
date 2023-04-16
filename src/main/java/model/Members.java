@@ -6,6 +6,7 @@ import org.bson.Document;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Members extends Users {
     private String id, username, password, gender, country, description, profilePicture;
@@ -212,6 +213,63 @@ public class Members extends Users {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public ArrayList<PastOrder> getOrder_history() {
+        return order_history;
+    }
+
+    public void addOrder(PastOrder order){
+        this.order_history.add(order);
+    }
+
+    ///MEMBERS TO DOCUMENT
+    public void upDate(){
+        Document toInsert = new Document();
+        toInsert.append("admin", this.isAdmin);
+        toInsert.append("username", this.username);
+        toInsert.append("email", this.email);
+        toInsert.append("password", this.password);
+
+        toInsert.append("country", this.country);
+        toInsert.append("gender", this.gender);
+        toInsert.append("phone_number", this.phoneNumber);
+        toInsert.append("created_at", this.dateOfCreation);
+        toInsert.append("updated_at", DateTime.date_actual());
+
+        List<Document> pastOrdersDOC = new ArrayList<>();
+        for (PastOrder pastOrder : this.order_history) {
+            pastOrdersDOC.add(pastOrder.toDocument());
+        }
+        toInsert.append("order_history", pastOrdersDOC);
+
+        toInsert.append("search_history", this.searchHistory);
+        toInsert.append("reduction", this.discount);
+        toInsert.append("bucket_list", this.bucketList);
+        toInsert.append("profile_picture", this.profilePicture);
+        toInsert.append("friends", this.friends);
+        toInsert.append("description", this.description);
+
+        List<Document> reviewsDOC = new ArrayList<>();
+        for (Review review : this.reviews) {
+            reviewsDOC.add(review.toDocument());
+        }
+        toInsert.append("reviews", reviewsDOC);
+
+        List<Document> paymentMethodDOC = new ArrayList<>();
+        ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
+        paymentMethods.add(this.paymentMethod);
+        for (PaymentMethod paymentMethod : paymentMethods) {
+            paymentMethodDOC.add(paymentMethod.toDocument());
+        }
+        toInsert.append("payment_method", paymentMethodDOC);
+
+        UsersDao usersDao = new UsersDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Users");
+        usersDao.updateUserEmail(this.email, toInsert);
     }
 
     static public void main(String[] args) {

@@ -53,7 +53,7 @@ public class GuestWindow {
         imageView.setFitWidth(60);
         imageView.setFitHeight(60);
         imageView.setOnMouseClicked(mouseEvent -> {
-            WelcomeWindowController.signUp();
+            WelcomeWindowController.signUp(stage);
         });
         grid.add(imageView, 4, 0);
 

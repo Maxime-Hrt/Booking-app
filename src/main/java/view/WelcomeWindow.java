@@ -89,7 +89,7 @@ public class WelcomeWindow extends Application {
         btn.setOnAction(e -> WelcomeWindowController.login(userTextField, pwBox, actiontarget, stage));
 
         // Gestionnaire d'événements du bouton d'inscription
-        signUpButton.setOnAction(e -> WelcomeWindowController.signUp());
+        signUpButton.setOnAction(e -> WelcomeWindowController.signUp(stage));
 
         //todo: Verifier la null value
         guestButton.setOnAction(e -> WelcomeWindowController.guest(stage));

@@ -36,7 +36,11 @@ public class PaymentMethod {
         return this.cardNumber.substring(this.cardNumber.length() - 4);
     }
 
-
+    public Document toDocument() {
+        return new Document("card_number", this.cardNumber)
+                .append("expiration_date", this.expirationDate)
+                .append("security_code", this.cvv);
+    }
 
     public String toString(){
         return "Card number: " + cardNumber + "\nExpiration date: " + expirationDate + "\nSecurity code: " + cvv;
