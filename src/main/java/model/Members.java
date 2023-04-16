@@ -2,6 +2,7 @@ package model;
 
 import com.mongodb.client.MongoClients;
 import dao.UsersDao;
+import javafx.scene.control.Label;
 import org.bson.Document;
 
 import java.time.LocalDate;
@@ -227,6 +228,13 @@ public class Members extends Users {
         this.order_history.add(order);
     }
 
+    public ArrayList<String> getFriends() {
+        return friends;
+    }
+    public void addFriend(String friend){
+        this.friends.add(friend);
+    }
+
     ///MEMBERS TO DOCUMENT
     public void upDate(){
         Document toInsert = new Document();
@@ -277,5 +285,37 @@ public class Members extends Users {
         for (Members member : members) {
             member.printMember();
         }
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getCreated_at() {
+        return (this.dateOfCreation);
+    }
+
+    public LocalDate getUpdated_at() {
+        return (this.dateOfUpdate);
+    }
+
+    public ArrayList<String> getBucketList() {
+        return bucketList;
+    }
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGender(String gender){
+        this.gender = gender;
     }
 }

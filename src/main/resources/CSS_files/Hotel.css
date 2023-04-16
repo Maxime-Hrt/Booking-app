@@ -23,3 +23,19 @@
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
 }
+
+.background-menu-member{
+    -fx-background-color: #FFF;
+    -fx-border-color: #000;
+    -fx-padding: 13px;
+    -fx-alignment: center;
+    -fx-text-alignment: center/*
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;*/
+}
+
+.background-menu-member:hover{
+    -fx-background-color: #808080;/*
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;*/
+}

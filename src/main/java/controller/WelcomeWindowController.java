@@ -41,6 +41,67 @@ public class WelcomeWindowController {
         }
     }
 
+    static public void loginPortable(Stage stage){
+        Stage loginStage = new Stage();
+        loginStage.setTitle("Login");
+        GridPane loginGrid = new GridPane();
+        loginGrid.setAlignment(Pos.CENTER);
+        loginGrid.setHgap(10);
+        loginGrid.setVgap(10);
+        loginGrid.setPadding(new Insets(25, 25, 25, 25));
+
+        // Ajout du champ d'identifiant
+        Label userName = new Label("User Name:");
+        loginGrid.add(userName, 0, 0);
+
+        TextField userTextField = new TextField();
+        loginGrid.add(userTextField, 1, 0);
+
+        // Ajout du champ de mot de passe
+        Label pw = new Label("Password:");
+        loginGrid.add(pw, 0, 1);
+
+        PasswordField pwBox = new PasswordField();
+        loginGrid.add(pwBox, 1, 1);
+
+        // Ajout du bouton de connexion
+        Button btn = new Button("Sign in");
+        HBox hbBtn = new HBox(10);
+        hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtn.getChildren().add(btn);
+        loginGrid.add(hbBtn, 1, 2, 2, 1);
+
+        // Ajout du message d'erreur
+        final Text actiontarget = new Text();
+        loginGrid.add(actiontarget, 1, 3);
+
+
+        btn.setOnAction(e -> {
+            String username = userTextField.getText();
+            String password = pwBox.getText();
+
+            Members member = new Members();
+            if (!member.verifyUser(username, password)) {
+                actiontarget.setFill(Color.RED);
+                actiontarget.setText("Incorrect username or password");
+            } else {
+                if (actiontarget != null) {
+                    actiontarget.setFill(Color.GREEN);
+                    actiontarget.setText("Login successful");
+                }
+
+                member = new Members(member.findUser(username, password));
+                member.printMember();
+                loginStage.close();
+                MemberWindow.memberWindow(stage, member);
+            }
+        });
+
+        Scene scene = new Scene(loginGrid, 300, 275);
+        loginStage.setScene(scene);
+        loginStage.show();
+    }
+
     static public void signUp(Stage stage) {
         // Création de la nouvelle fenêtre d'inscription
         Stage signUpStage = new Stage();
