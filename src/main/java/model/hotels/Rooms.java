@@ -14,6 +14,14 @@ public class Rooms {
 
     }
 
+    public Rooms(String type, int price, int number_of_pax, ArrayList<LocalDate> unavailableDates, ArrayList<String> photos) {
+        this.type = type;
+        this.price = price;
+        this.number_of_pax = number_of_pax;
+        this.unavailableDates = unavailableDates;
+        this.photos = photos;
+    }
+
     public Rooms(Document room){
         this.type = room.getString("type");
         this.price = room.getInteger("price");
@@ -24,6 +32,14 @@ public class Rooms {
         } else {
             this.photos = new ArrayList<String>();
         }
+    }
+
+    public Document toDocument(){
+        return new Document("type", this.type)
+                .append("price", this.price)
+                .append("numberOfPax", this.number_of_pax)
+                .append("dates", this.unavailableDates)
+                .append("photos", this.photos);
     }
 
     public void printRoom(){

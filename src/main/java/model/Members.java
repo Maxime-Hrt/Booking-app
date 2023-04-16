@@ -318,4 +318,8 @@ public class Members extends Users {
     public void setGender(String gender){
         this.gender = gender;
     }
+
+    public boolean getRole(){
+        return this.isAdmin;
+    }
 }

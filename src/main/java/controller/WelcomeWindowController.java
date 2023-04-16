@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.Data;
 import model.Members;
 import model.Users;
+import view.Admin.AdminWindow;
 import view.GuestWindow;
 import view.MemberWindow;
 
@@ -37,7 +38,14 @@ public class WelcomeWindowController {
 
             member = new Members(member.findUser(username, password));
             member.printMember();
-            MemberWindow.memberWindow(stage, member);
+            if (member.getRole()) {
+                //ToDO admin Windo
+                MemberWindow.memberWindow(stage, member);
+                AdminWindow.adminWindow(null, member);
+            }
+            else {
+                MemberWindow.memberWindow(stage, member);
+            }
         }
     }
 
@@ -93,7 +101,14 @@ public class WelcomeWindowController {
                 member = new Members(member.findUser(username, password));
                 member.printMember();
                 loginStage.close();
-                MemberWindow.memberWindow(stage, member);
+                if (member.getRole()) {
+                    //ToDO admin Windo
+                    AdminWindow.adminWindow(null, member);
+                    MemberWindow.memberWindow(stage, member);
+                }
+                else {
+                    MemberWindow.memberWindow(stage, member);
+                }
             }
         });
 

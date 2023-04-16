@@ -41,6 +41,10 @@ public class AccommodationsDao implements IAccommodationsDao {
         this.accommodationsCollection.replaceOne(new Document("_id", id), accommodation);
     }
 
+    public void updateAccommodationName(String name, Document accommodation) {
+        this.accommodationsCollection.replaceOne(new Document("name", name), accommodation);
+    }
+
     @Override
     public void deleteAccommodation(Object id) {
         this.accommodationsCollection.deleteOne(new Document("_id", id));

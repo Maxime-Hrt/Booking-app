@@ -35,6 +35,13 @@ public class Adress {
         return number;
     }
 
+    public Document toDocument() {
+        return new Document("number", this.number)
+                .append("street", this.street)
+                .append("city", this.city)
+                .append("country", this.country);
+    }
+
     public String getStreet() {
         return street;
     }
