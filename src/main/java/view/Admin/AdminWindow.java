@@ -1,6 +1,7 @@
 package view.Admin;
 
 import controller.Admin.AddHotelButton;
+import controller.Admin.EraseHotelButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,7 +17,7 @@ public class AdminWindow {
         }
 
 
-        Scene scene = new Scene(new VBox(), 600, 400);
+        Scene scene = new Scene(new VBox(), 650, 400);
 
         VBox vBox = new VBox(40);
         vBox.setAlignment(Pos.CENTER);
@@ -26,13 +27,17 @@ public class AdminWindow {
         Button addHotel = new Button("Add Hotel");
         Button modifyHotel = new Button("Modify Hotel");
         Button eraseHotel = new Button("Erase Hotel");
+        Button watchData = new Button("Watch Data");
 
         Stage finalAdminStage = adminStage;
         addHotel.setOnAction(actionEvent -> {
             AddHotelButton.addHotelButton(finalAdminStage, member);
         });
+        eraseHotel.setOnAction(actionEvent -> {
+            EraseHotelButton.eraseHotelButton(finalAdminStage, member);
+        });
 
-        vBox.getChildren().addAll(addHotel, modifyHotel, eraseHotel);
+        vBox.getChildren().addAll(addHotel, modifyHotel, eraseHotel, watchData);
         scene.setRoot(vBox);
         adminStage.setScene(scene);
         adminStage.show();

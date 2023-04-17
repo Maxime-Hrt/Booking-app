@@ -245,7 +245,7 @@ public class Members extends Users {
 
         toInsert.append("country", this.country);
         toInsert.append("gender", this.gender);
-        toInsert.append("phone_number", this.phoneNumber);
+        toInsert.append("phone_number", this.phoneNumber != null ? this.phoneNumber : "");
         toInsert.append("created_at", this.dateOfCreation);
         toInsert.append("updated_at", DateTime.date_actual());
 
@@ -260,7 +260,8 @@ public class Members extends Users {
         toInsert.append("bucket_list", this.bucketList);
         toInsert.append("profile_picture", this.profilePicture);
         toInsert.append("friends", this.friends);
-        toInsert.append("description", this.description);
+        //toInsert.append("description", this.description);
+        toInsert.append("description", this.description != null ? this.description : "");
 
         List<Document> reviewsDOC = new ArrayList<>();
         for (Review review : this.reviews) {
@@ -269,12 +270,18 @@ public class Members extends Users {
         toInsert.append("reviews", reviewsDOC);
 
         List<Document> paymentMethodDOC = new ArrayList<>();
+        if (this.paymentMethod == null){
+            this.paymentMethod = new PaymentMethod();
+        }
+        paymentMethodDOC.add(this.paymentMethod.toDocument());
+        toInsert.append("payment_method", paymentMethodDOC);
+        /*
         ArrayList<PaymentMethod> paymentMethods = new ArrayList<>();
         paymentMethods.add(this.paymentMethod);
         for (PaymentMethod paymentMethod : paymentMethods) {
             paymentMethodDOC.add(paymentMethod.toDocument());
         }
-        toInsert.append("payment_method", paymentMethodDOC);
+        toInsert.append("payment_method", paymentMethodDOC);*/
 
         UsersDao usersDao = new UsersDao(MongoClients.create("mongodb+srv://Maxime:lOQWdn8hDNv94JFz@ece-booking.h35vdkg.mongodb.net/ECE-BOOKING"), "ECE-BOOKING", "Users");
         usersDao.updateUserEmail(this.email, toInsert);

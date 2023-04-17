@@ -103,8 +103,8 @@ public class WelcomeWindowController {
                 loginStage.close();
                 if (member.getRole()) {
                     //ToDO admin Windo
-                    AdminWindow.adminWindow(null, member);
                     MemberWindow.memberWindow(stage, member);
+                    AdminWindow.adminWindow(null, member);
                 }
                 else {
                     MemberWindow.memberWindow(stage, member);
