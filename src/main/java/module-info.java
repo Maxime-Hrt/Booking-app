@@ -5,6 +5,8 @@ module com.example.ece_booking {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.driver.core;
     requires org.mongodb.bson;
+    requires org.jfree.jfreechart;
+    requires jfreechart.fx;
 
 
     opens com.example.ece_booking to javafx.fxml;

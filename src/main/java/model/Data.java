@@ -45,4 +45,8 @@ public class Data {
     public UsersDao getUserDao() {
         return tabOfUsers;
     }
+
+    public AccommodationsDao getAccommodationsDao() {
+        return tabOfAccommodations;
+    }
 }

@@ -2,11 +2,10 @@ package model;
 
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
-import org.bson.codecs.jsr310.LocalDateCodec;
-
 import java.util.*;
 import java.time.*;
 import java.util.Date;
+
 
 public class PaymentMethod {
     private String cardNumber;
@@ -16,6 +15,9 @@ public class PaymentMethod {
 
 
     public PaymentMethod() {
+        cardNumber = "";
+        expirationDate = LocalDate.now();
+        cvv = "";
     }
 
     public PaymentMethod(String cardNumber, LocalDate expirationDate, String cvv) {

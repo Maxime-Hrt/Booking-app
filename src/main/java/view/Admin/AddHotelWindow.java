@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class AddHotelWindow {
     static public void addHotelWindow(Stage stage, Members member){
-        Scene scene = new Scene(new VBox(), 600, 400);
+        Scene scene = new Scene(new VBox(), 650, 400);
 
         GridPane gridPane = new GridPane();
         gridPane.setPadding(new javafx.geometry.Insets(10, 10, 10, 10));

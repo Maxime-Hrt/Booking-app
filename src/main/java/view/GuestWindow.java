@@ -33,7 +33,7 @@ public class GuestWindow {
 
 
         Rectangle rect = new Rectangle(1086, 724);
-        rect.setFill(Color.YELLOWGREEN);
+        rect.setFill(Color.rgb(4, 53, 128));
 
 
         GridPane grid = new GridPane();
