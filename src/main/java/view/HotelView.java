@@ -36,7 +36,7 @@ public class HotelView {
         gridPane.setPadding(new Insets(25));
 
         Button backButton = new Button("Back");
-        backButton.setOnAction(actionEvent ->ResearchView.printResearch(stage, user));
+        backButton.setOnAction(actionEvent ->ResearchView.printResearch(stage, user, "All"));
 
         VBox mainVBox = new VBox(35);
         mainVBox.setPadding(new Insets(25));
