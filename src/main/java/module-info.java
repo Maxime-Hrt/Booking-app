@@ -13,5 +13,6 @@ module com.example.ece_booking {
     exports com.example.ece_booking;
     exports view;
     exports controller;
+    exports controller.Admin;
 }
 

@@ -1,6 +1,7 @@
 package view.Admin;
 
 import controller.Admin.AddHotelButton;
+import controller.Admin.Charts;
 import controller.Admin.EraseHotelButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -35,6 +36,9 @@ public class AdminWindow {
         });
         eraseHotel.setOnAction(actionEvent -> {
             EraseHotelButton.eraseHotelButton(finalAdminStage, member);
+        });
+        watchData.setOnAction(actionEvent -> {
+            Charts.barCharts(finalAdminStage, member);
         });
 
         vBox.getChildren().addAll(addHotel, modifyHotel, eraseHotel, watchData);
