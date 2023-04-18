@@ -97,9 +97,15 @@ public class MemberController {
         for (Hotels hotel : member.getTempSearch().searchHotel()) {
             hotel.printHotel();
         }
-        ResearchView.printResearch(stage, member);
+        ResearchView.printResearch(stage, member, "All");
     }
 
+    /**
+     * GridPane for the member page
+     * @param stage
+     * @param member
+     * @return
+     */
     public static GridPane gridPaneMember(Stage stage, Members member){
         GridPane grid = new GridPane();
         grid.setAlignment(Pos.CENTER);

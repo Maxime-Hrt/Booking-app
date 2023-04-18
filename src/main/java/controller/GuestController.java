@@ -74,6 +74,6 @@ public class GuestController {
             hotel.printHotel();
         }
 
-        ResearchView.printResearch(stage, user);
+        ResearchView.printResearch(stage, user, "All");
     }
 }
