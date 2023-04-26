@@ -1,4 +1,4 @@
-# Project Name: Booking app
+Booking app
 
 Booking app is a Java-based desktop application for booking and managing accommodations. The system uses JavaFX for the user interface and MongoDB for data storage. This system allows users to create an account, search for accommodations, make reservations, and manage their bookings.
 
